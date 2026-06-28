@@ -49,8 +49,98 @@ export default function NewsPage() {
           </figure>
         </section>
 
-        {/* Article */}
+        {/* English Translation */}
         <article className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-8">
+          <div className="relative rounded-2xl bg-card shadow-xl border border-border p-6 sm:p-10 md:p-12">
+            {/* Label */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-navy/10 text-navy text-xs font-semibold uppercase tracking-widest rounded-full mb-5">
+              <Newspaper className="h-3.5 w-3.5" />
+              English Translation
+            </div>
+
+            {/* Title */}
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy leading-tight text-balance">
+              A Calm Mind Helps Discover Solutions
+            </h2>
+
+            {/* Byline */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 pb-8 border-b border-border text-sm text-charcoal/60">
+              <span className="flex items-center gap-2">
+                <User className="h-4 w-4 text-gold" />
+                By K. Janarthanan
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="mt-8 space-y-6 text-lg leading-relaxed text-charcoal/80">
+              <p className="text-xl text-charcoal font-medium leading-relaxed">
+                A positive attitude and a peaceful state of mind can help us find solutions to problems
+                instead of getting trapped in them.
+              </p>
+
+              <p>
+                Speaking at a public event, Dr. Joseph Anand explained that when the mind is calm, the brain
+                functions more effectively and our ability to think clearly improves.
+              </p>
+
+              <p>
+                He pointed out that when we become anxious, fearful, or emotionally disturbed, our thinking
+                narrows. However, by remaining calm, we activate the brain&apos;s prefrontal cortex,
+                enabling better reasoning, decision-making, creativity, and problem-solving.
+              </p>
+
+              <p>
+                He emphasized that we should not allow circumstances to control our emotions. Instead, we
+                should consciously develop the habit of pausing, observing the situation objectively, and
+                then responding wisely.
+              </p>
+
+              <p>According to him, cultivating a positive mindset helps us:</p>
+              <ul className="space-y-3 pl-1">
+                {[
+                  'Make better decisions.',
+                  'Improve relationships.',
+                  'Handle challenges more effectively.',
+                  'Reduce stress and anxiety.',
+                  'Discover opportunities even in difficult situations.',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p>
+                He encouraged participants to practice these principles regularly so that they become
+                natural habits in everyday life.
+              </p>
+
+              <p>
+                Dr. Joseph Anand also interacted personally with attendees, discussed ideas from his books,
+                and signed copies for readers.
+              </p>
+
+              <blockquote className="border-l-4 border-gold bg-soft-gold/20 rounded-r-lg px-6 py-5 italic text-navy font-serif text-xl">
+                &ldquo;Instead of allowing problems to dominate our minds, we should train our minds to
+                discover solutions.&rdquo;
+                <span className="mt-3 block text-base not-italic font-semibold text-charcoal/70">
+                  &mdash; Dr. Joseph Anand
+                </span>
+              </blockquote>
+
+              <p>
+                The article also mentions that many people attended the event, interacted with the author,
+                and appreciated his practical insights on positive thinking and mental well-being. A
+                photograph accompanying the article shows Dr. Joseph Anand signing books and speaking with
+                attendees.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        {/* Article */}
+        <article className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-8 pb-20 lg:pb-28">
           <div className="relative rounded-2xl bg-card shadow-xl border border-border p-6 sm:p-10 md:p-12">
             {/* Category */}
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/15 text-gold text-xs font-semibold uppercase tracking-widest rounded-full mb-5">
@@ -183,96 +273,6 @@ export default function NewsPage() {
                 &ldquo;Calmness is the first step toward solving problems&mdash;even when the solution is not
                 yet in sight.&rdquo;
               </blockquote>
-            </div>
-          </div>
-        </article>
-
-        {/* English Translation */}
-        <article className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-8 pb-20 lg:pb-28">
-          <div className="relative rounded-2xl bg-card shadow-xl border border-border p-6 sm:p-10 md:p-12">
-            {/* Label */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-navy/10 text-navy text-xs font-semibold uppercase tracking-widest rounded-full mb-5">
-              <Newspaper className="h-3.5 w-3.5" />
-              English Translation
-            </div>
-
-            {/* Title */}
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy leading-tight text-balance">
-              A Calm Mind Helps Discover Solutions
-            </h2>
-
-            {/* Byline */}
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 pb-8 border-b border-border text-sm text-charcoal/60">
-              <span className="flex items-center gap-2">
-                <User className="h-4 w-4 text-gold" />
-                By K. Janarthanan
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="mt-8 space-y-6 text-lg leading-relaxed text-charcoal/80">
-              <p className="text-xl text-charcoal font-medium leading-relaxed">
-                A positive attitude and a peaceful state of mind can help us find solutions to problems
-                instead of getting trapped in them.
-              </p>
-
-              <p>
-                Speaking at a public event, Dr. Joseph Anand explained that when the mind is calm, the brain
-                functions more effectively and our ability to think clearly improves.
-              </p>
-
-              <p>
-                He pointed out that when we become anxious, fearful, or emotionally disturbed, our thinking
-                narrows. However, by remaining calm, we activate the brain&apos;s prefrontal cortex,
-                enabling better reasoning, decision-making, creativity, and problem-solving.
-              </p>
-
-              <p>
-                He emphasized that we should not allow circumstances to control our emotions. Instead, we
-                should consciously develop the habit of pausing, observing the situation objectively, and
-                then responding wisely.
-              </p>
-
-              <p>According to him, cultivating a positive mindset helps us:</p>
-              <ul className="space-y-3 pl-1">
-                {[
-                  'Make better decisions.',
-                  'Improve relationships.',
-                  'Handle challenges more effectively.',
-                  'Reduce stress and anxiety.',
-                  'Discover opportunities even in difficult situations.',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <p>
-                He encouraged participants to practice these principles regularly so that they become
-                natural habits in everyday life.
-              </p>
-
-              <p>
-                Dr. Joseph Anand also interacted personally with attendees, discussed ideas from his books,
-                and signed copies for readers.
-              </p>
-
-              <blockquote className="border-l-4 border-gold bg-soft-gold/20 rounded-r-lg px-6 py-5 italic text-navy font-serif text-xl">
-                &ldquo;Instead of allowing problems to dominate our minds, we should train our minds to
-                discover solutions.&rdquo;
-                <span className="mt-3 block text-base not-italic font-semibold text-charcoal/70">
-                  &mdash; Dr. Joseph Anand
-                </span>
-              </blockquote>
-
-              <p>
-                The article also mentions that many people attended the event, interacted with the author,
-                and appreciated his practical insights on positive thinking and mental well-being. A
-                photograph accompanying the article shows Dr. Joseph Anand signing books and speaking with
-                attendees.
-              </p>
             </div>
           </div>
         </article>
