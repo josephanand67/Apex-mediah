@@ -16,8 +16,41 @@ export default function NewsPage() {
     <>
       <Navbar />
       <main className="bg-cream">
+        {/* Featured in the Press */}
+        <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-20 lg:pt-32 pb-4">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/15 text-gold text-xs font-semibold uppercase tracking-widest rounded-full mb-4">
+              <Newspaper className="h-3.5 w-3.5" />
+              Featured in the Press
+            </div>
+            <h2 className="font-serif text-2xl md:text-4xl font-bold text-navy leading-tight text-balance">
+              As Featured in The Press
+            </h2>
+            <p className="mt-3 text-charcoal/60 max-w-2xl mx-auto leading-relaxed">
+              Dr. Joseph Anand&apos;s 11-book collection on emotional intelligence, featured in a national
+              newspaper following the book launch event.
+            </p>
+          </div>
+
+          <figure className="flex flex-col items-center">
+            <div className="w-full overflow-hidden rounded-2xl bg-card shadow-xl border border-border p-3 sm:p-4">
+              <Image
+                src="/images/press-feature-tamil.jpeg"
+                alt="Newspaper feature on Dr. Joseph Anand's 11-book collection for emotional intelligence, published in a Tamil-language national newspaper."
+                width={1600}
+                height={1000}
+                className="w-full h-auto rounded-lg"
+                priority
+              />
+            </div>
+            <figcaption className="mt-4 text-center text-sm text-charcoal/50 italic">
+              Press coverage of the book launch event, featuring Dr. Joseph Anand.
+            </figcaption>
+          </figure>
+        </section>
+
         {/* Article */}
-        <article className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-20 lg:pt-32">
+        <article className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-8">
           <div className="relative rounded-2xl bg-card shadow-xl border border-border p-6 sm:p-10 md:p-12">
             {/* Category */}
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/15 text-gold text-xs font-semibold uppercase tracking-widest rounded-full mb-5">
@@ -153,38 +186,6 @@ export default function NewsPage() {
             </div>
           </div>
         </article>
-
-        {/* Featured in the Press */}
-        <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pb-28">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/15 text-gold text-xs font-semibold uppercase tracking-widest rounded-full mb-4">
-              <Newspaper className="h-3.5 w-3.5" />
-              Featured in the Press
-            </div>
-            <h2 className="font-serif text-2xl md:text-4xl font-bold text-navy leading-tight text-balance">
-              As Featured in The Press
-            </h2>
-            <p className="mt-3 text-charcoal/60 max-w-2xl mx-auto leading-relaxed">
-              Dr. Joseph Anand&apos;s 11-book collection on emotional intelligence, featured in a national
-              newspaper following the book launch event.
-            </p>
-          </div>
-
-          <figure className="flex flex-col items-center">
-            <div className="w-full overflow-hidden rounded-2xl bg-card shadow-xl border border-border p-3 sm:p-4">
-              <Image
-                src="/images/press-feature-tamil.jpeg"
-                alt="Newspaper feature on Dr. Joseph Anand's 11-book collection for emotional intelligence, published in a Tamil-language national newspaper."
-                width={1600}
-                height={1000}
-                className="w-full h-auto rounded-lg"
-              />
-            </div>
-            <figcaption className="mt-4 text-center text-sm text-charcoal/50 italic">
-              Press coverage of the book launch event, featuring Dr. Joseph Anand.
-            </figcaption>
-          </figure>
-        </section>
       </main>
       <Footer />
     </>
