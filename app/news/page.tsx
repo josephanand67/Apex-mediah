@@ -27,8 +27,8 @@ export default function NewsPage() {
               As Featured in The Press
             </h2>
             <p className="mt-3 text-charcoal/60 max-w-2xl mx-auto leading-relaxed">
-              Dr. Joseph Anand&apos;s 11-book collection on emotional intelligence, featured in a national
-              newspaper following the book launch event.
+              Dr. Joseph Anand&apos;s P Series books on Human Development was launched in Singapore. Tamil
+              Murasu, a Tamil language newspaper covered the book launch event.
             </p>
           </div>
 
