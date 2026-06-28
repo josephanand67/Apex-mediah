@@ -44,7 +44,8 @@ export default function NewsPage() {
               />
             </div>
             <figcaption className="mt-4 text-center text-sm text-charcoal/50 italic">
-              Press coverage of the book launch event, featuring Dr. Joseph Anand.
+              Press coverage of the book launch event, featuring Dr. Joseph Anand. Read the English version
+              of the article below.
             </figcaption>
           </figure>
         </section>
@@ -53,9 +54,15 @@ export default function NewsPage() {
         <article className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-8">
           <div className="relative rounded-2xl bg-card shadow-xl border border-border p-6 sm:p-10 md:p-12">
             {/* Category */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/15 text-gold text-xs font-semibold uppercase tracking-widest rounded-full mb-5">
-              <Tag className="h-3.5 w-3.5" />
-              Emotional Intelligence
+            <div className="flex flex-wrap items-center gap-2 mb-5">
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-gold/15 text-gold text-xs font-semibold uppercase tracking-widest rounded-full">
+                <Tag className="h-3.5 w-3.5" />
+                Emotional Intelligence
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-navy/10 text-navy text-xs font-semibold uppercase tracking-widest rounded-full">
+                <Newspaper className="h-3.5 w-3.5" />
+                English Version
+              </span>
             </div>
 
             {/* Title */}
@@ -82,10 +89,10 @@ export default function NewsPage() {
             {/* Content */}
             <div className="mt-8 space-y-6 text-lg leading-relaxed text-charcoal/80">
               <p className="text-xl text-charcoal font-medium leading-relaxed">
-                Published in May 2026, this feature spotlights a new 11-book collection written by
-                management consultant Dr. Joseph Anand. The series was created to help people deal with
-                anxiety, workplace pressure, and the uncertainty driven by rapid advances in artificial
-                intelligence.
+                This is the English version of the article published by Tamil Murasu covering the Singapore
+                launch of Dr. Joseph Anand&apos;s P Series books on Human Development. The feature spotlights
+                the new 11-book collection, created to help people deal with anxiety, workplace pressure,
+                and the uncertainty driven by rapid advances in artificial intelligence.
               </p>
 
               <h2 className="font-serif text-2xl font-bold text-navy pt-4">Key Message</h2>
