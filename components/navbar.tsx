@@ -4,17 +4,12 @@ import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Facebook, Youtube, Linkedin, ChevronDown, Download, BookOpen, Newspaper, RadioIcon, Headphones } from 'lucide-react'
+import { Menu, X, Facebook, Youtube, Linkedin } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navigation, siteConfig } from '@/lib/site-config'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { QuickLinksDropdown } from '@/components/quick-links-dropdown'
 
 function NavbarComponent() {
   const [scrolled, setScrolled] = useState(false)
@@ -74,50 +69,8 @@ function NavbarComponent() {
               </Link>
             ))}
             
-            {/* Quick Links Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className={cn(
-                  'relative px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1',
-                  'text-navy hover:text-gold'
-                )}>
-                  Quick Links
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48 bg-cream border-navy/20">
-                <DropdownMenuItem asChild>
-                  <Link href="/cheatsheets" className="flex items-center gap-2 cursor-pointer">
-                    <Download className="h-4 w-4 text-gold" />
-                    <span>Cheat Sheets</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/books" className="flex items-center gap-2 cursor-pointer">
-                    <BookOpen className="h-4 w-4 text-gold" />
-                    <span>Books</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/blog" className="flex items-center gap-2 cursor-pointer">
-                    <Newspaper className="h-4 w-4 text-gold" />
-                    <span>Blog</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/latest-news" className="flex items-center gap-2 cursor-pointer">
-                    <RadioIcon className="h-4 w-4 text-gold" />
-                    <span>Latest News</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/podcast" className="flex items-center gap-2 cursor-pointer">
-                    <Headphones className="h-4 w-4 text-gold" />
-                    <span>Podcast</span>
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Quick Links Dropdown with Content */}
+            <QuickLinksDropdown />
           </div>
 
           {/* Social Links & CTA */}
@@ -206,48 +159,50 @@ function NavbarComponent() {
                         </Link>
                       </li>
                     ))}
-                    <li className="border-t border-navy/10 pt-2 mt-2">
-                      <p className="px-4 py-2 text-sm font-semibold text-navy">Quick Links</p>
-                      <Link
-                        href="/cheatsheets"
-                        prefetch={true}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
-                      >
-                        Cheat Sheets
-                      </Link>
-                      <Link
-                        href="/books"
-                        prefetch={true}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
-                      >
-                        Books
-                      </Link>
-                      <Link
-                        href="/blog"
-                        prefetch={true}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
-                      >
-                        Blog
-                      </Link>
-                      <Link
-                        href="/latest-news"
-                        prefetch={true}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
-                      >
-                        Latest News
-                      </Link>
-                      <Link
-                        href="/podcast"
-                        prefetch={true}
-                        onClick={() => setOpen(false)}
-                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
-                      >
-                        Podcast
-                      </Link>
+                    <li className="border-t border-navy/10 pt-4 mt-4">
+                      <p className="px-4 py-2 text-sm font-semibold text-navy mb-2">Quick Links</p>
+                      <div className="space-y-1 ml-2">
+                        <Link
+                          href="/cheatsheets"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Cheat Sheets
+                        </Link>
+                        <Link
+                          href="/books"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Books
+                        </Link>
+                        <Link
+                          href="/blog"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Blog
+                        </Link>
+                        <Link
+                          href="/latest-news"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Latest News
+                        </Link>
+                        <Link
+                          href="/podcast"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Podcast
+                        </Link>
+                      </div>
                     </li>
                   </ul>
                 </nav>
