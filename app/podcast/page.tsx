@@ -1,8 +1,22 @@
 'use client'
 
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
+
 export default function PodcastPage() {
   return (
-    <div className="min-h-screen bg-cream pt-24 pb-12 flex items-center justify-center">
+    <div className="min-h-screen bg-cream pb-12">
+      {/* Back Arrow Navigation */}
+      <div className="sticky top-0 z-10 bg-cream border-b border-navy/10">
+        <div className="max-w-2xl mx-auto px-4 py-4">
+          <Link href="/" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors group">
+            <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-medium">Back to Home</span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="pt-24 pb-12 flex items-center justify-center">
       <div className="max-w-2xl mx-auto px-4 text-center">
         <h1 className="text-5xl font-bold text-navy mb-4">Podcast</h1>
         <div className="bg-white rounded-lg border border-navy/10 p-12">

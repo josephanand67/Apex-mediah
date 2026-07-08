@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Download, FileText, ArrowRight } from 'lucide-react'
+import { Download, FileText, ArrowRight, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -55,9 +55,19 @@ const cheatsheets = [
 
 export default function CheatsheetsPage() {
   return (
-    <main className="min-h-screen bg-background pt-32 pb-20">
+    <main className="min-h-screen bg-background pb-20">
+      {/* Back Arrow Navigation */}
+      <div className="sticky top-0 z-10 bg-background border-b border-navy/10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4">
+          <Link href="/" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors group">
+            <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-medium">Back to Home</span>
+          </Link>
+        </div>
+      </div>
+
       {/* Header */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center mb-16 pt-32">
         <h1 className="font-serif text-5xl md:text-6xl font-bold text-navy mb-4">
           Cheat Sheets & Resources
         </h1>
