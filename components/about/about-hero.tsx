@@ -2,19 +2,19 @@ import Image from 'next/image'
 
 export function AboutHero() {
   return (
-    <section className="relative pt-32 pb-20 bg-cream">
+    <section className="relative pt-32 pb-20 bg-navy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div>
-            <span className="inline-block px-4 py-2 bg-navy/10 text-navy text-sm font-semibold uppercase tracking-widest rounded-full mb-6">
+            <span className="inline-block px-4 py-2 bg-gold/20 text-gold text-sm font-semibold uppercase tracking-widest rounded-full mb-6">
               About Joseph
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-cream leading-tight">
               Transforming Lives Through{' '}
               <span className="text-gold">Wisdom & Experience</span>
             </h1>
-            <p className="mt-6 text-xl text-navy/70 leading-relaxed">
+            <p className="mt-6 text-xl text-cream/70 leading-relaxed">
               With over four decades of global leadership experience, Joseph Anand has dedicated his life to helping individuals and organizations unlock their full potential.
             </p>
           </div>

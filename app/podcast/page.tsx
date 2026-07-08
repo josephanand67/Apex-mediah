@@ -1,47 +1,43 @@
-import type { Metadata } from 'next'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
-import Link from 'next/link'
-import { ArrowLeft, Mic } from 'lucide-react'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Podcast',
-  description: "Joseph Anand's podcast on emotional intelligence, leadership, and personal growth. Coming soon.",
-}
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 
 export default function PodcastPage() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <section className="relative min-h-[80vh] flex items-center justify-center pt-32 pb-20 bg-navy overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-cream/5 rounded-full blur-3xl" />
-          </div>
-          <div className="relative mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gold/20 text-gold rounded-2xl mb-8">
-              <Mic className="h-8 w-8" />
+    <div className="min-h-screen bg-cream pb-12">
+      {/* Back Arrow Navigation */}
+      <div className="sticky top-0 z-10 bg-cream border-b border-navy/10">
+        <div className="max-w-2xl mx-auto px-4 py-4">
+          <Link href="/" className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors group">
+            <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-medium">Back to Home</span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="pt-24 pb-12 flex items-center justify-center">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold text-navy mb-4">Podcast</h1>
+          <div className="bg-white rounded-lg border border-navy/10 p-12">
+            <div className="mb-6">
+              <div className="inline-block bg-soft-gold text-navy px-4 py-2 rounded-full text-lg font-semibold mb-4">
+                Coming Soon
+              </div>
             </div>
-            <p className="text-gold text-sm font-semibold uppercase tracking-widest mb-4">Podcast</p>
-            <h1 className="font-serif text-4xl md:text-6xl font-bold text-cream text-balance">
-              Coming Soon
-            </h1>
-            <p className="mt-6 text-lg text-cream/70 leading-relaxed text-pretty">
-              Our podcast content is currently in development. Stay tuned for upcoming episodes.
+            <p className="text-2xl font-semibold text-navy mb-3">Exciting Audio Content Coming Soon</p>
+            <p className="text-navy/70 text-lg leading-relaxed mb-8">
+              We're launching an engaging podcast series featuring industry experts, thought leaders, and inspiring conversations. Get ready to listen to fresh perspectives and valuable insights.
             </p>
-            <Link
-              href="/"
-              prefetch={true}
-              className="mt-10 inline-flex items-center gap-2 px-6 py-3 bg-gold text-navy font-semibold rounded-lg hover:bg-cream transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Link>
+            <div className="space-y-3">
+              <p className="text-navy/60">Be the first to know when our podcast episodes go live!</p>
+              <a href="/#newsletter" className="inline-block bg-gold text-navy px-6 py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                Notify Me When Available
+              </a>
+            </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </div>
+    </div>
   )
 }

@@ -26,9 +26,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-    dynamicIO: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

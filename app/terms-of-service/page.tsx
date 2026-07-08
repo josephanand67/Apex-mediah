@@ -3,7 +3,6 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import Link from 'next/link'
 import { ArrowLeft, FileText } from 'lucide-react'
-import { siteConfig } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Joseph Anand',
@@ -148,7 +147,7 @@ export default function TermsOfServicePage() {
                     If you have any questions about these Terms of Service, please contact us at:
                   </p>
                   <p className="mt-4 text-navy font-medium">
-                    Email: <a href={`mailto:${siteConfig.email}`} className="text-gold hover:underline">{siteConfig.email}</a>
+                    Email: <a href="mailto:anaman@gmail.com" className="text-gold hover:underline">anaman@gmail.com</a>
                   </p>
                 </div>
 

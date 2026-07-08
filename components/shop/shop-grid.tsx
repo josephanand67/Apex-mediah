@@ -50,13 +50,23 @@ const BookGridItem = memo(function BookGridItem({
         <p className="mt-1 text-charcoal/70 text-sm line-clamp-1">
           {book.subtitle}
         </p>
-        <div className="mt-3">
+        <div className="mt-3 flex gap-2">
           <BuyNowDropdown
             amazonUrl={book.amazonUrl}
             barnesNobleUrl={book.barnesNobleUrl}
             size="sm"
             fullWidth
           />
+          <Button
+            asChild
+            size="sm"
+            variant="outline"
+            className="border-navy text-navy hover:bg-navy hover:text-cream"
+          >
+            <Link href={`/books/${book.slug}`} prefetch={true}>
+              Details
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

@@ -27,10 +27,6 @@ export const metadata: Metadata = {
   keywords: ['Joseph Anand', 'Author', 'Speaker', 'Executive Coach', 'Emotional Intelligence', 'Leadership', 'Transformative Coach', 'Positive Psychology'],
   authors: [{ name: 'Joseph Anand' }],
   creator: 'Joseph Anand',
-  icons: {
-    icon: '/favicon.png',
-    apple: '/favicon.png',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',

@@ -1,6 +1,5 @@
 import { Metadata } from "next"
 import { FadeIn } from "@/components/animations"
-import { siteConfig } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: "Terms of Service | Joseph Anand",
@@ -89,10 +88,7 @@ export default function TermsPage() {
                     Contact Information
                   </h2>
                   <p className="leading-relaxed">
-                    If you have any questions about these Terms of Service, please contact us at{' '}
-                    <a href={`mailto:${siteConfig.email}`} className="text-gold hover:underline">
-                      {siteConfig.email}
-                    </a>.
+                    If you have any questions about these Terms of Service, please contact us at anaman@gmail.com.
                   </p>
                 </section>
               </div>

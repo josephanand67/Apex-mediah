@@ -1,6 +1,5 @@
 import { Metadata } from "next"
 import { FadeIn } from "@/components/animations"
-import { siteConfig } from '@/lib/site-config'
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Joseph Anand",
@@ -93,10 +92,7 @@ export default function PrivacyPage() {
                     Contact Us
                   </h2>
                   <p className="leading-relaxed">
-                    If you have any questions about this privacy policy, please contact us at{' '}
-                    <a href={`mailto:${siteConfig.email}`} className="text-gold hover:underline">
-                      {siteConfig.email}
-                    </a>.
+                    If you have any questions about this privacy policy, please contact us at anaman@gmail.com.
                   </p>
                 </section>
               </div>

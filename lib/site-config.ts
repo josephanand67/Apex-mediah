@@ -5,12 +5,10 @@ export const siteConfig = {
   url: 'https://josephanand.com',
   ogImage: '/og-image.jpg',
   logo: '/images/life-logo.png',
-  email: 'contact@josephanand.com',
   links: {
     facebook: 'https://www.facebook.com/joe.bro.505',
     youtube: 'https://youtube.com/@josephanand9341',
     linkedin: 'https://www.linkedin.com/in/dr-joseph-anand-75a62413',
-    instagram: 'https://www.instagram.com/joseph_anand_sg?igsh=dWoxbnZ0eDdjNnVz&utm_source=qr',
   },
   featuredVideo: 'https://youtu.be/nOHJ_jn03ho',
 }
@@ -22,12 +20,6 @@ export const navigation = [
   { name: 'Events', href: '/events' },
   { name: 'Shop', href: '/shop' },
   { name: 'Contact', href: '/contact' },
-]
-
-export const footerAdditionalLinks = [
-  { name: 'Blog', href: '/blog' },
-  { name: 'Latest News', href: '/news' },
-  { name: 'Podcast', href: '/podcast' },
 ]
 
 export const statistics = [
