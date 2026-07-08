@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Facebook, Youtube, Linkedin, ChevronDown, Download, BookOpen } from 'lucide-react'
+import { Menu, X, Facebook, Youtube, Linkedin, ChevronDown, Download, BookOpen, Newspaper, RadioIcon, Headphones } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navigation, siteConfig } from '@/lib/site-config'
 import { Button } from '@/components/ui/button'
@@ -96,6 +96,24 @@ function NavbarComponent() {
                   <Link href="/books" className="flex items-center gap-2 cursor-pointer">
                     <BookOpen className="h-4 w-4 text-gold" />
                     <span>Books</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/blog" className="flex items-center gap-2 cursor-pointer">
+                    <Newspaper className="h-4 w-4 text-gold" />
+                    <span>Blog</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/latest-news" className="flex items-center gap-2 cursor-pointer">
+                    <RadioIcon className="h-4 w-4 text-gold" />
+                    <span>Latest News</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/podcast" className="flex items-center gap-2 cursor-pointer">
+                    <Headphones className="h-4 w-4 text-gold" />
+                    <span>Podcast</span>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -205,6 +223,30 @@ function NavbarComponent() {
                         className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
                       >
                         Books
+                      </Link>
+                      <Link
+                        href="/blog"
+                        prefetch={true}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
+                      >
+                        Blog
+                      </Link>
+                      <Link
+                        href="/latest-news"
+                        prefetch={true}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
+                      >
+                        Latest News
+                      </Link>
+                      <Link
+                        href="/podcast"
+                        prefetch={true}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
+                      >
+                        Podcast
                       </Link>
                     </li>
                   </ul>
