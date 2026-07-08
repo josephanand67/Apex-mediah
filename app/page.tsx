@@ -9,7 +9,6 @@ import { FeaturedVideoSection } from '@/components/home/featured-video-section'
 import { AboutPreviewSection } from '@/components/home/about-preview-section'
 import { TestimonialsSection } from '@/components/testimonials'
 import { ContactSection } from '@/components/home/contact-section'
-import { BlogSection } from '@/components/home/blog-section'
 import { NewsletterSection } from '@/components/home/cta-sections'
 
 export default function HomePage() {
@@ -23,7 +22,6 @@ export default function HomePage() {
         <FeaturedBooksSection />
         <EQSeriesSection />
         <FeaturedVideoSection />
-        <BlogSection />
         <TestimonialsSection />
         <ContactSection />
         <WhereToFindBooksSection />

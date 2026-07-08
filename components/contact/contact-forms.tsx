@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Facebook, Youtube, Linkedin, Instagram, Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Facebook, Youtube, Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -47,21 +47,18 @@ export function ContactForms() {
     setStatus('loading')
     
     try {
-      // Send email via API endpoint
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
+      // Send email using mailto as fallback (or integrate with email service)
+      const mailtoLink = `mailto:anaman@gmail.com?subject=Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.comment}`
+      )}`
+      
+      window.location.href = mailtoLink
+      
+      // Simulate success after a short delay
+      setTimeout(() => {
         setStatus('success')
         setFormData({ name: '', email: '', comment: '' })
-      } else {
-        setStatus('error')
-      }
+      }, 1000)
     } catch {
       setStatus('error')
     }
@@ -89,13 +86,13 @@ export function ContactForms() {
             
             <div className="space-y-4 mb-8">
               <a
-                href={`mailto:${siteConfig.email}`}
+                href="mailto:anaman@gmail.com"
                 className="flex items-center gap-3 text-charcoal/70 hover:text-gold transition-colors"
               >
                 <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">
                   <Mail className="h-5 w-5 text-gold" />
                 </div>
-                {siteConfig.email}
+                anaman@gmail.com
               </a>
             </div>
 
@@ -115,22 +112,6 @@ export function ContactForms() {
                 className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
               >
                 <Youtube className="h-5 w-5" />
-              </Link>
-              <Link
-                href={siteConfig.links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
-              >
-                <Linkedin className="h-5 w-5" />
-              </Link>
-              <Link
-                href={siteConfig.links.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
-              >
-                <Instagram className="h-5 w-5" />
               </Link>
             </div>
           </ScrollReveal>

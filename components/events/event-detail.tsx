@@ -6,7 +6,6 @@ import { memo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ScrollReveal } from '@/components/premium-effects'
-import { siteConfig } from '@/lib/site-config'
 import type { Event } from '@/lib/events-data'
 
 interface EventDetailProps {
@@ -157,8 +156,8 @@ export const EventDetail = memo(function EventDetail({ event }: EventDetailProps
               <div className="mt-6 pt-6 border-t border-border">
                 <p className="text-sm text-charcoal/60 text-center">
                   Questions? Contact us at{' '}
-                  <Link href={`mailto:${siteConfig.email}`} prefetch={true} className="text-gold hover:underline">
-                    {siteConfig.email}
+                  <Link href="/contact" prefetch={true} className="text-gold hover:underline">
+                    anaman@gmail.com
                   </Link>
                 </p>
               </div>
