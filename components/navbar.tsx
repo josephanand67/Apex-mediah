@@ -4,11 +4,17 @@ import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Facebook, Youtube, Linkedin } from 'lucide-react'
+import { Menu, X, Facebook, Youtube, Linkedin, ChevronDown, Download, BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navigation, siteConfig } from '@/lib/site-config'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
 function NavbarComponent() {
   const [scrolled, setScrolled] = useState(false)
@@ -67,6 +73,33 @@ function NavbarComponent() {
                 )}
               </Link>
             ))}
+            
+            {/* Quick Links Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className={cn(
+                  'relative px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1',
+                  'text-navy hover:text-gold'
+                )}>
+                  Quick Links
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 bg-cream border-navy/20">
+                <DropdownMenuItem asChild>
+                  <Link href="/cheatsheets" className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4 text-gold" />
+                    <span>Cheat Sheets</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/books" className="flex items-center gap-2 cursor-pointer">
+                    <BookOpen className="h-4 w-4 text-gold" />
+                    <span>Books</span>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Social Links & CTA */}
@@ -155,6 +188,25 @@ function NavbarComponent() {
                         </Link>
                       </li>
                     ))}
+                    <li className="border-t border-navy/10 pt-2 mt-2">
+                      <p className="px-4 py-2 text-sm font-semibold text-navy">Quick Links</p>
+                      <Link
+                        href="/cheatsheets"
+                        prefetch={true}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
+                      >
+                        Cheat Sheets
+                      </Link>
+                      <Link
+                        href="/books"
+                        prefetch={true}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-4 py-3 text-lg font-medium transition-colors text-navy hover:bg-soft-gold ml-2"
+                      >
+                        Books
+                      </Link>
+                    </li>
                   </ul>
                 </nav>
                 <div className="border-t border-navy/10 p-6">
