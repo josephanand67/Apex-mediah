@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Facebook, Youtube, Linkedin, Mail, MapPin } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
-import { memo } from 'react'
 
 const footerLinks = {
   quickLinks: [
@@ -14,20 +13,26 @@ const footerLinks = {
     { name: 'Shop', href: '/shop' },
     { name: 'Contact', href: '/contact' },
   ],
+  resources: [
+    { name: 'Blog', href: '/blog' },
+    { name: 'Latest News', href: '/latest-news' },
+    { name: 'Podcast', href: '/podcast' },
+    { name: 'Cheat Sheets', href: '/cheatsheets' },
+  ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy-policy' },
     { name: 'Terms of Service', href: '/terms-of-service' },
   ],
 }
 
-function FooterComponent() {
+export function Footer() {
   return (
     <footer className="bg-navy text-cream">
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block" prefetch={true}>
               <Image
                 src={siteConfig.logo}
@@ -89,6 +94,24 @@ function FooterComponent() {
             </ul>
           </div>
 
+          {/* Resources */}
+          <div>
+            <h4 className="font-serif text-lg font-semibold text-cream mb-6">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    prefetch={true}
+                    className="text-sm text-cream/70 transition-colors hover:text-gold"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Legal */}
           <div>
             <h4 className="font-serif text-lg font-semibold text-cream mb-6">Legal</h4>
@@ -113,7 +136,7 @@ function FooterComponent() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-gold mt-0.5" />
-                <span className="text-sm text-cream/70">anaman@gmail.com</span>
+                <a href="mailto:contact@josephanand.com" className="text-sm text-cream/70 transition-colors hover:text-gold">contact@josephanand.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-gold mt-0.5" />
@@ -127,7 +150,7 @@ function FooterComponent() {
         <div className="mt-16 pt-8 border-t border-cream/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-cream/50">
-              &copy; {new Date().getFullYear()} L.I.F.E. manifested LLP. All rights reserved.
+              &copy; 2026 L.I.F.E. manifested LLP. All rights reserved.
             </p>
             <p className="text-sm text-cream/50">
               Living Intentionally for Excellence
@@ -138,5 +161,3 @@ function FooterComponent() {
     </footer>
   )
 }
-
-export const Footer = memo(FooterComponent)
