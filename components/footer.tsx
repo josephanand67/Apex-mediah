@@ -151,7 +151,7 @@ function FooterComponent() {
         <div className="mt-16 pt-8 border-t border-cream/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-cream/50">
-              &copy; {new Date().getFullYear()} L.I.F.E. manifested LLP. All rights reserved.
+              &copy; 2026 L.I.F.E. manifested LLP. All rights reserved.
             </p>
             <p className="text-sm text-cream/50">
               Living Intentionally for Excellence
