@@ -14,6 +14,12 @@ const footerLinks = {
     { name: 'Shop', href: '/shop' },
     { name: 'Contact', href: '/contact' },
   ],
+  resources: [
+    { name: 'Blog', href: '/blog' },
+    { name: 'Latest News', href: '/latest-news' },
+    { name: 'Podcast', href: '/podcast' },
+    { name: 'Cheat Sheets', href: '/cheatsheets' },
+  ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy-policy' },
     { name: 'Terms of Service', href: '/terms-of-service' },
@@ -25,7 +31,7 @@ function FooterComponent() {
     <footer className="bg-navy text-cream">
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-4">
+        <div className="grid gap-12 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block" prefetch={true}>
@@ -89,6 +95,24 @@ function FooterComponent() {
             </ul>
           </div>
 
+          {/* Resources */}
+          <div>
+            <h4 className="font-serif text-lg font-semibold text-cream mb-6">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    prefetch={true}
+                    className="text-sm text-cream/70 transition-colors hover:text-gold"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Legal */}
           <div>
             <h4 className="font-serif text-lg font-semibold text-cream mb-6">Legal</h4>
@@ -113,7 +137,7 @@ function FooterComponent() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-gold mt-0.5" />
-                <span className="text-sm text-cream/70">anaman@gmail.com</span>
+                <a href="mailto:contact@josephanand.com" className="text-sm text-cream/70 transition-colors hover:text-gold">contact@josephanand.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-gold mt-0.5" />
