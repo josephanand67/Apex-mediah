@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Facebook, Youtube, Linkedin, Mail, MapPin } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
-import { memo } from 'react'
 
 const footerLinks = {
   quickLinks: [
@@ -26,7 +25,7 @@ const footerLinks = {
   ],
 }
 
-function FooterComponent() {
+export function Footer() {
   return (
     <footer className="bg-navy text-cream">
       {/* Main Footer */}
@@ -162,5 +161,3 @@ function FooterComponent() {
     </footer>
   )
 }
-
-export const Footer = memo(FooterComponent)
