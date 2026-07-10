@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Download, BookOpen, Newspaper, RadioIcon, Headphones, ChevronDown } from 'lucide-react'
+import { Download, Newspaper, RadioIcon, Headphones, ChevronDown } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,12 +23,6 @@ export function QuickLinksDropdown() {
           <Link href="/cheatsheets" className="flex items-center gap-2 cursor-pointer">
             <Download className="h-4 w-4 text-gold" />
             <span>Cheat Sheets</span>
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/books" className="flex items-center gap-2 cursor-pointer">
-            <BookOpen className="h-4 w-4 text-gold" />
-            <span>Books</span>
           </Link>
         </DropdownMenuItem>
         <div className="border-t border-navy/10 my-2" />
