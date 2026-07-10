@@ -171,14 +171,6 @@ function NavbarComponent() {
                           Cheat Sheets
                         </Link>
                         <Link
-                          href="/books"
-                          prefetch={true}
-                          onClick={() => setOpen(false)}
-                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
-                        >
-                          Books
-                        </Link>
-                        <Link
                           href="/blog"
                           prefetch={true}
                           onClick={() => setOpen(false)}
