@@ -1,44 +1,67 @@
 'use client'
 
-import { ArrowRight, Mail, CheckCircle } from 'lucide-react'
+import { ArrowRight, Mail, CheckCircle, Loader } from 'lucide-react'
 import { memo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ScrollReveal } from '@/components/premium-effects'
+import { useToast } from '@/hooks/use-toast'
 
 export const NewsletterSection = memo(function NewsletterSection() {
   const [email, setEmail] = useState('')
-  const [firstName, setFirstName] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const { toast } = useToast()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (!email || !email.includes('@')) {
+      toast({
+        variant: 'destructive',
+        title: 'Invalid Email',
+        description: 'Please enter a valid email address.',
+      })
+      return
+    }
+
     setLoading(true)
-    setError('')
 
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, firstName })
+        body: JSON.stringify({ email }),
       })
 
       const data = await response.json()
 
-      if (!response.ok) {
-        setError(data.error || 'Failed to subscribe')
-        return
-      }
+      if (response.ok) {
+        setSubmitted(true)
+        setEmail('')
+        toast({
+          title: 'Thank You for Joining!',
+          description: 'Check your email to confirm your subscription.',
+        })
 
-      setSuccess(true)
-      setEmail('')
-      setFirstName('')
-      setTimeout(() => setSuccess(false), 5000)
-    } catch (err) {
-      setError('Failed to subscribe. Please try again.')
-      console.error('[v0] Subscribe error:', err)
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false)
+        }, 5000)
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Subscription Failed',
+          description: data.error || 'Failed to process your subscription. Please try again.',
+        })
+      }
+    } catch (error) {
+      console.error('Newsletter error:', error)
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+      })
     } finally {
       setLoading(false)
     }
@@ -66,27 +89,18 @@ export const NewsletterSection = memo(function NewsletterSection() {
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
-          {success ? (
-            <div className="mt-10 p-6 bg-green-50 border border-green-200 rounded-lg max-w-lg mx-auto">
-              <div className="flex items-center gap-3 justify-center mb-2">
-                <CheckCircle className="h-6 w-6 text-green-600" />
-                <p className="text-green-900 font-semibold">Thank you for joining!</p>
-              </div>
-              <p className="text-green-800 text-sm">Check your email to confirm your subscription.</p>
+          {submitted ? (
+            <div className="mt-10 max-w-lg mx-auto p-6 bg-white rounded-lg border border-gold/20">
+              <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-xl font-serif font-bold text-navy mb-2">
+                Thank You for Joining!
+              </h3>
+              <p className="text-charcoal/70 mb-4">
+                Check your email to confirm your subscription. We&apos;ve also sent you a notification, and you&apos;ll start receiving our exclusive content soon.
+              </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-10 flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <div className="relative flex-1">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-charcoal/40" />
-                <Input
-                  type="text"
-                  placeholder="First name (optional)"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="pl-12 h-14 bg-card border-border focus:border-gold focus:ring-gold text-base"
-                  disabled={loading}
-                />
-              </div>
               <div className="relative flex-1">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-charcoal/40" />
                 <Input
@@ -94,9 +108,9 @@ export const NewsletterSection = memo(function NewsletterSection() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-12 h-14 bg-card border-border focus:border-gold focus:ring-gold text-base"
-                  required
                   disabled={loading}
+                  className="pl-12 h-14 bg-card border-border focus:border-gold focus:ring-gold text-base disabled:opacity-50"
+                  required
                 />
               </div>
               <Button
@@ -105,15 +119,19 @@ export const NewsletterSection = memo(function NewsletterSection() {
                 disabled={loading}
                 className="h-14 px-8 bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 disabled:opacity-50"
               >
-                {loading ? 'Subscribing...' : 'Subscribe'}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {loading ? (
+                  <>
+                    <Loader className="mr-2 h-5 w-5 animate-spin" />
+                    Subscribing...
+                  </>
+                ) : (
+                  <>
+                    Subscribe
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </>
+                )}
               </Button>
             </form>
-          )}
-          {error && (
-            <p className="mt-4 text-sm text-red-600">
-              {error}
-            </p>
           )}
           <p className="mt-4 text-sm text-charcoal/50">
             No spam. Unsubscribe anytime. Your privacy is respected.

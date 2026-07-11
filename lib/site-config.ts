@@ -22,6 +22,18 @@ export const navigation = [
   { name: 'Contact', href: '/contact' },
 ]
 
+export const quickLinksMenu = [
+  { name: 'Cheat Sheets', href: '/cheatsheets' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Latest News', href: '/latest-news' },
+  { name: 'Podcast', href: '/podcast' },
+]
+
+export const footerAdditionalLinks = [
+  { name: 'Blog', href: '/blog' },
+  { name: 'Latest News', href: '/latest-news' },
+  { name: 'Podcast', href: '/podcast' },
+]
 export const statistics = [
   { value: '40+', label: 'Years Experience' },
   { value: '12', label: 'Published Books' },
