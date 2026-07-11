@@ -2,9 +2,8 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Youtube, Linkedin, Instagram, Mail, MapPin } from 'lucide-react'
-import { siteConfig, footerAdditionalLinks } from '@/lib/site-config'
-import { memo } from 'react'
+import { Facebook, Youtube, Linkedin, Mail, MapPin } from 'lucide-react'
+import { siteConfig } from '@/lib/site-config'
 
 const footerLinks = {
   quickLinks: [
@@ -16,8 +15,9 @@ const footerLinks = {
   ],
   resources: [
     { name: 'Blog', href: '/blog' },
-    { name: 'Latest News', href: '/news' },
+    { name: 'Latest News', href: '/latest-news' },
     { name: 'Podcast', href: '/podcast' },
+    { name: 'Cheat Sheets', href: '/cheatsheets' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy-policy' },
@@ -25,21 +25,21 @@ const footerLinks = {
   ],
 }
 
-function FooterComponent() {
+export function Footer() {
   return (
     <footer className="bg-navy text-cream">
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block" prefetch={true}>
               <Image
                 src={siteConfig.logo}
                 alt="L.I.F.E. manifested LLP"
-                width={280}
-                height={94}
-                className="h-24 w-auto object-contain brightness-0 invert"
+                width={160}
+                height={53}
+                className="h-12 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="mt-4 text-sm text-cream/70 leading-relaxed">
@@ -73,21 +73,11 @@ function FooterComponent() {
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link
-                href={siteConfig.links.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-cream/10 text-cream transition-colors duration-100 hover:bg-gold hover:text-navy"
-              >
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Link>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg font-semibold text-cream mb-6">Quick Links</h4>
             <ul className="space-y-3">
               {footerLinks.quickLinks.map((link) => (
                 <li key={link.name}>
@@ -145,12 +135,7 @@ function FooterComponent() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-gold mt-0.5" />
-                <Link
-                  href={`mailto:${siteConfig.email}`}
-                  className="text-sm text-cream/70 hover:text-gold transition-colors"
-                >
-                  {siteConfig.email}
-                </Link>
+                <a href="mailto:contact@josephanand.com" className="text-sm text-cream/70 transition-colors hover:text-gold">contact@josephanand.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-gold mt-0.5" />
@@ -164,7 +149,7 @@ function FooterComponent() {
         <div className="mt-16 pt-8 border-t border-cream/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-cream/50">
-              &copy; {new Date().getFullYear()} L.I.F.E. manifested LLP. All rights reserved.
+              &copy; 2026 L.I.F.E. manifested LLP. All rights reserved.
             </p>
             <p className="text-sm text-cream/50">
               Living Intentionally for Excellence
@@ -175,5 +160,3 @@ function FooterComponent() {
     </footer>
   )
 }
-
-export const Footer = memo(FooterComponent)

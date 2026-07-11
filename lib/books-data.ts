@@ -5,7 +5,6 @@ export interface Book {
   description: string
   amazonUrl: string
   barnesNobleUrl: string
-  partridgeUrl?: string
   coverImage: string
   category: string
   publishedDate: string
@@ -19,7 +18,7 @@ export const books: Book[] = [
     subtitle: 'The Gap Where Emotional Intelligence Lives',
     description: 'Pause on Purpose explores the overlooked space between stimulus and response—the small, often invisible gap where awareness, choice, and emotional intelligence reside. It is in this gap that reactions soften, clarity emerges, and wiser action becomes possible.',
     amazonUrl: 'https://www.amazon.com/Pause-Purposes-Where-Emotional-Intelligence-ebook/dp/B0GLJ76622',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/pause-on-purpose-joseph-anand/1149617149',
+    barnesNobleUrl: 'https://www.barnesandnoble.com/w/pause-on-purpose-joseph-anand/1149617149?ean=9798995100034',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-03%20at%206.51.33%20AM-JeDGaSzO5St5UmtS78QJXyPLNxoyLQ.jpeg',
     category: 'Emotional Intelligence',
     publishedDate: '2024',
@@ -54,7 +53,7 @@ export const books: Book[] = [
     subtitle: 'The Hidden Lens Behind Every Decision',
     description: 'Perception explores the invisible lens through which we interpret reality—shaping what we notice, what we miss, what feels threatening, and what feels possible. Two people can face the same moment and live entirely different lives, not because of circumstances, but because of how those circumstances are perceived.',
     amazonUrl: 'https://www.amazon.com/Perception-Hidden-Behind-Every-Decision-ebook/dp/B0GLLHZH72',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/perception-joseph-anand/1149617162',
+    barnesNobleUrl: 'https://www.barnesandnoble.com/w/perception-joseph-anand/1149617162?ean=9798995100058',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-03%20at%206.51.33%20AM%20%283%29-n8hXOMLOEYwn0q48aKhnxakT3O0yZi.jpeg',
     category: 'Psychology',
     publishedDate: '2024',
@@ -122,7 +121,7 @@ export const books: Book[] = [
     subtitle: 'Best Version of Yourself Manifested',
     description: 'THE P-SERIES: A Human Development Series for a Complex World. The P-Series was written for this moment. Eleven books. One journey. Each book stands alone. Together, they form architecture for living intentionally and manifesting your highest potential.',
     amazonUrl: 'https://www.amazon.com/LIFE-Intentionally-Excellence-Yourself-Manifested-ebook/dp/B0GT2FQVGC',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/life-blue-print-publisher/1149725113',
+    barnesNobleUrl: 'https://www.barnesandnoble.com/w/life-blue-print-publisher/1149725113?ean=9781918741162',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-03%20at%206.51.35%20AM%20%281%29-19r6cSAxkeFet2BDuVVhmnSYGsVvTB.jpeg',
     category: 'Personal Development',
     publishedDate: '2024',
@@ -134,7 +133,7 @@ export const books: Book[] = [
     subtitle: 'Stop Managing Time - SMT',
     description: 'You don\'t lose your life all at once. You lose it one day at a time to things that never truly mattered. In PRIORITY, Joseph Anand takes you beyond time management and productivity hacks into a far more confronting and liberating question: What actually deserves your life?',
     amazonUrl: 'https://www.amazon.com/PRIORITY-What-deserves-your-life-ebook/dp/B0GX3CPTMD',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/priority-blue-print-publisher/1149729949',
+    barnesNobleUrl: 'https://www.barnesandnoble.com/w/pause-on-purpose-joseph-anand/1149617149?ean=9798995100034',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-03%20at%206.51.35%20AM%20%282%29-reL9qglhhj13Y2sIuxT89xrGOrFJ9C.jpeg',
     category: 'Personal Development',
     publishedDate: '2024',
@@ -149,54 +148,6 @@ export const books: Book[] = [
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-03%20at%206.51.35%20AM-bwIwYyKA9qzDzpcUxOXn6FmVwPLO2b.jpeg',
     category: 'Mindfulness',
     publishedDate: '2024',
-  },
-  {
-    slug: 'eq-project-leadership',
-    title: 'The EQ ADVANTAGE In The Age of AI: Mastering Project Leadership Through Emotional Intelligence',
-    subtitle: 'Project Leadership Excellence',
-    description: 'Master the essential leadership skills needed in the age of AI. This comprehensive guide explores how emotional intelligence transforms project management, team dynamics, and organizational success in an increasingly technological world.',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+project+leadership+joseph+anand',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149485107?ean=9781543785494',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872988-the-eq-advantage-in-the-age-of-ai',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-pjozexnLWe6aLRkzjMszDB2TGPxyih.png',
-    category: 'EQ Series',
-    publishedDate: '2025',
-  },
-  {
-    slug: 'eq-critical-life-skill',
-    title: 'The EQ ADVANTAGE In The Age of AI: Emotional Intelligence A Critical Life Skill for all Ages',
-    subtitle: 'Life Skills for Modern Times',
-    description: 'Emotional intelligence is no longer optional—it\'s essential for success at every stage of life. Discover how to develop and nurture EQ across all ages, from children to professionals to seniors.',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+critical+life+skill+joseph+anand',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149575636?ean=9781543785531',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872990-the-eq-advantage-in-the-age-of-ai',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-Js37TbVPfeqPd4LXCW1TPYB47hmcaf.png',
-    category: 'EQ Series',
-    publishedDate: '2025',
-  },
-  {
-    slug: 'eq-human-edge',
-    title: 'The EQ ADVANTAGE In The Age of AI: Reclaiming The Human Edge with Emotional Intelligence',
-    subtitle: 'The Human Advantage',
-    description: 'As AI becomes increasingly sophisticated, the human element becomes even more valuable. Learn how emotional intelligence gives you the competitive edge in a technology-driven world.',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+human+edge+joseph+anand',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149526811?ean=9781543785517',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872989-the-eq-advantage-in-the-age-of-ai',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-DkXAazLBtm92a0T3WdCrc5r1Z3Ps8l.png',
-    category: 'EQ Series',
-    publishedDate: '2025',
-  },
-  {
-    slug: 'eq-young-humans',
-    title: 'The EQ ADVANTAGE In The Age of AI: Emotional Intelligence A Companion Edition For Young Humans',
-    subtitle: 'For the Next Generation',
-    description: 'Specially designed for young people navigating the digital age. This companion edition makes emotional intelligence accessible, practical, and relevant for the next generation of leaders.',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+young+humans+joseph+anand',
-    barnesNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149767974?ean=9781543785739',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872991-the-eq-advantage-in-the-age-of-ai',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-wTSvOS2J691Mo6IKiQBoojhIH1qgW7.png',
-    category: 'EQ Series',
-    publishedDate: '2025',
   },
 ]
 

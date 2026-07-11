@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Facebook, Youtube, Linkedin, Instagram, ChevronDown } from 'lucide-react'
+import { Menu, X, Facebook, Youtube, Linkedin } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { navigation, quickLinksMenu, siteConfig } from '@/lib/site-config'
+import { navigation, siteConfig } from '@/lib/site-config'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { QuickLinksDropdown } from '@/components/quick-links-dropdown'
 
 function NavbarComponent() {
   const [scrolled, setScrolled] = useState(false)
@@ -35,15 +35,15 @@ function NavbarComponent() {
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 lg:h-32 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-3" prefetch={true}>
+          <Link href="/" className="group hidden sm:flex items-center gap-3" prefetch={true}>
             <Image
               src={siteConfig.logo}
               alt="L.I.F.E. manifested LLP"
-              width={320}
-              height={107}
-              className="h-14 sm:h-16 lg:h-32 w-auto object-contain"
+              width={180}
+              height={60}
+              className="h-14 w-auto object-contain"
               priority
             />
           </Link>
@@ -69,28 +69,8 @@ function NavbarComponent() {
               </Link>
             ))}
             
-            {/* Quick Links Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="relative px-4 py-2 text-sm font-medium transition-colors text-navy hover:text-gold flex items-center gap-1 group">
-                  Quick Links
-                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48 bg-cream border-navy/20">
-                {quickLinksMenu.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    <Link
-                      href={item.href}
-                      prefetch={true}
-                      className="cursor-pointer text-navy hover:text-gold hover:bg-cream/50"
-                    >
-                      {item.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Quick Links Dropdown with Content */}
+            <QuickLinksDropdown />
           </div>
 
           {/* Social Links & CTA */}
@@ -122,15 +102,6 @@ function NavbarComponent() {
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </Link>
-            <Link
-              href={siteConfig.links.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-navy transition-colors hover:text-gold"
-            >
-              <Instagram className="h-5 w-5" />
-              <span className="sr-only">Instagram</span>
-            </Link>
             <Button
               asChild
               className="bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100"
@@ -155,9 +126,9 @@ function NavbarComponent() {
                   <Image
                     src={siteConfig.logo}
                     alt="L.I.F.E. manifested LLP"
-                    width={240}
-                    height={80}
-                    className="h-20 w-auto object-contain"
+                    width={140}
+                    height={46}
+                    className="h-10 w-auto object-contain"
                   />
                   <Button
                     variant="ghost"
@@ -188,24 +159,42 @@ function NavbarComponent() {
                         </Link>
                       </li>
                     ))}
-                    
-                    {/* Quick Links Mobile */}
-                    <li>
-                      <div className="text-navy font-medium px-4 py-3 text-lg">Quick Links</div>
-                      <ul className="space-y-2 pl-4">
-                        {quickLinksMenu.map((item) => (
-                          <li key={item.name}>
-                            <Link
-                              href={item.href}
-                              prefetch={true}
-                              onClick={() => setOpen(false)}
-                              className="block rounded-lg px-4 py-2 text-base text-navy hover:bg-soft-gold transition-colors"
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                    <li className="border-t border-navy/10 pt-4 mt-4">
+                      <p className="px-4 py-2 text-sm font-semibold text-navy mb-2">Quick Links</p>
+                      <div className="space-y-1 ml-2">
+                        <Link
+                          href="/cheatsheets"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Cheat Sheets
+                        </Link>
+                        <Link
+                          href="/blog"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Blog
+                        </Link>
+                        <Link
+                          href="/latest-news"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Latest News
+                        </Link>
+                        <Link
+                          href="/podcast"
+                          prefetch={true}
+                          onClick={() => setOpen(false)}
+                          className="block rounded-lg px-4 py-2 text-sm font-medium transition-colors text-navy hover:bg-soft-gold"
+                        >
+                          Podcast
+                        </Link>
+                      </div>
                     </li>
                   </ul>
                 </nav>
@@ -234,14 +223,6 @@ function NavbarComponent() {
                       className="text-navy hover:text-gold transition-colors"
                     >
                       <Linkedin className="h-6 w-6" />
-                    </Link>
-                    <Link
-                      href={siteConfig.links.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-navy hover:text-gold transition-colors"
-                    >
-                      <Instagram className="h-6 w-6" />
                     </Link>
                   </div>
                   <Button

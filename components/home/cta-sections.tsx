@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, Mail, CheckCircle, AlertCircle, Loader } from 'lucide-react'
+import { ArrowRight, Mail, CheckCircle, Loader } from 'lucide-react'
 import { memo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,7 +28,7 @@ export const NewsletterSection = memo(function NewsletterSection() {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/newsletter', {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -68,7 +68,7 @@ export const NewsletterSection = memo(function NewsletterSection() {
   }
 
   return (
-    <section className="py-16 bg-cream relative overflow-hidden">
+    <section id="inner-circle" className="py-16 bg-cream relative overflow-hidden">
       {/* Simplified Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-72 h-72 bg-gold/5 rounded-full blur-3xl" />
@@ -110,6 +110,7 @@ export const NewsletterSection = memo(function NewsletterSection() {
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
                   className="pl-12 h-14 bg-card border-border focus:border-gold focus:ring-gold text-base disabled:opacity-50"
+                  required
                 />
               </div>
               <Button

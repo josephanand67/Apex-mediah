@@ -5,16 +5,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { BuyNowDropdown } from '@/components/buy-now-dropdown'
 import { DecorativeLine } from '@/components/premium-effects'
 
 interface EQBook {
   id: string
   title: string
   coverImage: string
-  amazonUrl: string
   barnesAndNobleUrl: string
-  partridgeUrl: string
 }
 
 const eqBooks: EQBook[] = [
@@ -22,33 +19,25 @@ const eqBooks: EQBook[] = [
     id: 'eq-project-leadership',
     title: 'The EQ ADVANTAGE In The Age of AI: Mastering Project Leadership Through Emotional Intelligence',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-pjozexnLWe6aLRkzjMszDB2TGPxyih.png',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+project+leadership+joseph+anand',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149485107?ean=9781543785494',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872988-the-eq-advantage-in-the-age-of-ai',
   },
   {
     id: 'eq-critical-life-skill',
     title: 'The EQ ADVANTAGE In The Age of AI: Emotional Intelligence A Critical Life Skill for all Ages',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-Js37TbVPfeqPd4LXCW1TPYB47hmcaf.png',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+critical+life+skill+joseph+anand',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149575636?ean=9781543785531',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872990-the-eq-advantage-in-the-age-of-ai',
   },
   {
     id: 'eq-human-edge',
     title: 'The EQ ADVANTAGE In The Age of AI: Reclaiming The Human Edge with Emotional Intelligence',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-DkXAazLBtm92a0T3WdCrc5r1Z3Ps8l.png',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+human+edge+joseph+anand',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149526811?ean=9781543785517',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872989-the-eq-advantage-in-the-age-of-ai',
   },
   {
     id: 'eq-young-humans',
     title: 'The EQ ADVANTAGE In The Age of AI: Emotional Intelligence A Companion Edition For Young Humans',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-wTSvOS2J691Mo6IKiQBoojhIH1qgW7.png',
-    amazonUrl: 'https://www.amazon.com/s?k=eq+advantage+young+humans+joseph+anand',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149767974?ean=9781543785739',
-    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872991-the-eq-advantage-in-the-age-of-ai',
   },
 ]
 
@@ -81,13 +70,20 @@ function EQBookCard({ book }: { book: EQBook }) {
 
           {/* Buy Now Button */}
           <div className="mt-auto pt-3 border-t border-border">
-            <BuyNowDropdown
-              amazonUrl={book.amazonUrl}
-              barnesNobleUrl={book.barnesAndNobleUrl}
-              partridgeUrl={book.partridgeUrl}
+            <Button
+              asChild
               size="sm"
-              fullWidth
-            />
+              className="bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 w-full text-xs"
+            >
+              <Link
+                href={book.barnesAndNobleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Buy Now
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
