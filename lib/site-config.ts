@@ -24,6 +24,13 @@ export const navigation = [
   { name: 'Contact', href: '/contact' },
 ]
 
+export const quickLinksMenu = [
+  { name: 'Cheat Sheets', href: '/cheat-sheets' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Latest News', href: '/news' },
+  { name: 'Podcast', href: '/podcast' },
+]
+
 export const footerAdditionalLinks = [
   { name: 'Blog', href: '/blog' },
   { name: 'Latest News', href: '/news' },

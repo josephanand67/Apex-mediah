@@ -4,11 +4,12 @@ import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Facebook, Youtube, Linkedin, Instagram } from 'lucide-react'
+import { Menu, X, Facebook, Youtube, Linkedin, Instagram, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { navigation, siteConfig } from '@/lib/site-config'
+import { navigation, quickLinksMenu, siteConfig } from '@/lib/site-config'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 function NavbarComponent() {
   const [scrolled, setScrolled] = useState(false)
@@ -67,6 +68,29 @@ function NavbarComponent() {
                 )}
               </Link>
             ))}
+            
+            {/* Quick Links Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="relative px-4 py-2 text-sm font-medium transition-colors text-navy hover:text-gold flex items-center gap-1 group">
+                  Quick Links
+                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48 bg-cream border-navy/20">
+                {quickLinksMenu.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link
+                      href={item.href}
+                      prefetch={true}
+                      className="cursor-pointer text-navy hover:text-gold hover:bg-cream/50"
+                    >
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Social Links & CTA */}
@@ -164,6 +188,25 @@ function NavbarComponent() {
                         </Link>
                       </li>
                     ))}
+                    
+                    {/* Quick Links Mobile */}
+                    <li>
+                      <div className="text-navy font-medium px-4 py-3 text-lg">Quick Links</div>
+                      <ul className="space-y-2 pl-4">
+                        {quickLinksMenu.map((item) => (
+                          <li key={item.name}>
+                            <Link
+                              href={item.href}
+                              prefetch={true}
+                              onClick={() => setOpen(false)}
+                              className="block rounded-lg px-4 py-2 text-base text-navy hover:bg-soft-gold transition-colors"
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
                   </ul>
                 </nav>
                 <div className="border-t border-navy/10 p-6">
