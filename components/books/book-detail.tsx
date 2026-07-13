@@ -94,6 +94,7 @@ export const BookDetail = memo(function BookDetail({ book }: BookDetailProps) {
               <BuyNowDropdown
                 amazonUrl={book.amazonUrl}
                 barnesNobleUrl={book.barnesNobleUrl}
+                partridgeUrl={book.partridgeUrl}
                 size="lg"
               />
               <Button

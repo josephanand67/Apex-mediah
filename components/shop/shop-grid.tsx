@@ -55,6 +55,7 @@ const BookGridItem = memo(function BookGridItem({
           <BuyNowDropdown
             amazonUrl={book.amazonUrl}
             barnesNobleUrl={book.barnesNobleUrl}
+            partridgeUrl={book.partridgeUrl}
             size="sm"
             fullWidth
           />
