@@ -32,15 +32,15 @@ function NavbarComponent() {
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-24 items-center justify-between">
+        <div className="flex h-32 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group hidden sm:flex items-center gap-3" prefetch={true}>
             <Image
               src={siteConfig.logo}
               alt="L.I.F.E. manifested LLP"
-              width={280}
-              height={93}
-              className="h-20 w-auto object-contain"
+              width={320}
+              height={107}
+              className="h-28 w-auto object-contain"
               priority
             />
           </Link>
