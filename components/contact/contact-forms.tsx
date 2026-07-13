@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Facebook, Youtube, Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Facebook, Youtube, Linkedin, Instagram, Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -102,6 +102,7 @@ export function ContactForms() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
+                title="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </Link>
@@ -110,8 +111,27 @@ export function ContactForms() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
+                title="YouTube"
               >
                 <Youtube className="h-5 w-5" />
+              </Link>
+              <Link
+                href={siteConfig.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
+                title="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </Link>
+              <Link
+                href={siteConfig.links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-cream hover:bg-gold hover:text-navy transition-all hover-lift"
+                title="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
               </Link>
             </div>
           </ScrollReveal>
