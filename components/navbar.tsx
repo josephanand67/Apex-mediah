@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Facebook, Youtube, Linkedin } from 'lucide-react'
+import { Menu, X, Facebook, Youtube, Linkedin, Instagram } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navigation, siteConfig } from '@/lib/site-config'
 import { Button } from '@/components/ui/button'
@@ -101,6 +101,15 @@ function NavbarComponent() {
             >
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
+            </Link>
+            <Link
+              href={siteConfig.links.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-navy transition-colors hover:text-gold"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="sr-only">Instagram</span>
             </Link>
             <Button
               asChild
@@ -223,6 +232,14 @@ function NavbarComponent() {
                       className="text-navy hover:text-gold transition-colors"
                     >
                       <Linkedin className="h-6 w-6" />
+                    </Link>
+                    <Link
+                      href={siteConfig.links.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-navy hover:text-gold transition-colors"
+                    >
+                      <Instagram className="h-6 w-6" />
                     </Link>
                   </div>
                   <Button
