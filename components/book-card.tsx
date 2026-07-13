@@ -25,8 +25,9 @@ export const BookCard = memo(function BookCard({ book }: BookCardProps) {
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
               className="transition-transform duration-150 group-hover:scale-102"
-              loading="lazy"
-              quality={95}
+              loading={book.featured ? undefined : "lazy"}
+              quality={85}
+              priority={book.featured}
               style={{ 
                 objectFit: 'cover',
                 objectPosition: 'right center'

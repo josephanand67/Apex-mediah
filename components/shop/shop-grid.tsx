@@ -24,8 +24,9 @@ const BookGridItem = memo(function BookGridItem({
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover hover:scale-102 transition-transform duration-150"
-            loading="lazy"
-            quality={95}
+            loading={book.featured ? undefined : "lazy"}
+            quality={85}
+            priority={book.featured}
             style={{ 
               objectFit: 'cover',
               objectPosition: 'right center'
