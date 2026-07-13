@@ -76,23 +76,25 @@ export const BuyNowDropdown = memo(function BuyNowDropdown({
             <ExternalLink className="h-4 w-4 text-charcoal/40" />
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild className="cursor-pointer rounded-lg focus:bg-soft-gold">
-          <Link
-            href={partridgeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 px-3 py-3"
-          >
-            <div className="w-8 h-8 bg-[#1E40AF] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xs">P</span>
-            </div>
-            <div className="flex-1">
-              <span className="font-medium text-navy">Partridge</span>
-              <p className="text-xs text-charcoal/60">Buy on Partridge</p>
-            </div>
-            <ExternalLink className="h-4 w-4 text-charcoal/40" />
-          </Link>
-        </DropdownMenuItem>
+        {partridgeUrl && (
+          <DropdownMenuItem asChild className="cursor-pointer rounded-lg focus:bg-soft-gold">
+            <Link
+              href={partridgeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-3 py-3"
+            >
+              <div className="w-8 h-8 bg-[#1E40AF] rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">P</span>
+              </div>
+              <div className="flex-1">
+                <span className="font-medium text-navy">Partridge</span>
+                <p className="text-xs text-charcoal/60">Buy on Partridge</p>
+              </div>
+              <ExternalLink className="h-4 w-4 text-charcoal/40" />
+            </Link>
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   )
