@@ -28,22 +28,19 @@ function NavbarComponent() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-colors duration-200',
-        scrolled
-          ? 'bg-cream/95 backdrop-blur-sm shadow-sm'
-          : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-colors duration-200 bg-cream/95 backdrop-blur-sm shadow-sm'
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-32 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group hidden sm:flex items-center gap-3" prefetch={true}>
             <Image
               src={siteConfig.logo}
               alt="L.I.F.E. manifested LLP"
-              width={180}
-              height={60}
-              className="h-14 w-auto object-contain"
+              width={320}
+              height={107}
+              className="h-28 w-auto object-contain"
               priority
             />
           </Link>

@@ -156,9 +156,9 @@ export const EventDetail = memo(function EventDetail({ event }: EventDetailProps
               <div className="mt-6 pt-6 border-t border-border">
                 <p className="text-sm text-charcoal/60 text-center">
                   Questions? Contact us at{' '}
-                  <Link href="/contact" prefetch={true} className="text-gold hover:underline">
-                    anaman@gmail.com
-                  </Link>
+                  <a href="mailto:contact@josephanand.com" className="text-gold hover:underline">
+                    contact@josephanand.com
+                  </a>
                 </p>
               </div>
             </div>
