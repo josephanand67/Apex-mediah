@@ -81,7 +81,7 @@ export default function CookiesPage() {
                     Contact Us
                   </h2>
                   <p className="leading-relaxed">
-                    If you have any questions about our use of cookies, please contact us at anaman@gmail.com.
+                    If you have any questions about our use of cookies, please contact us at contact@josephanand.com.
                   </p>
                 </section>
               </div>

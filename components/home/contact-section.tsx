@@ -23,17 +23,20 @@ export const ContactSection = memo(function ContactSection() {
     setStatus('loading')
 
     try {
-      const subject = encodeURIComponent(`Website Contact from ${formData.name}`)
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.comment}`
-      )
-      
-      window.location.href = `mailto:mictechydigitalcreator@gmail.com?subject=${subject}&body=${body}`
-      
-      setTimeout(() => {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
         setStatus('success')
         setFormData({ name: '', email: '', comment: '' })
-      }, 500)
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     }

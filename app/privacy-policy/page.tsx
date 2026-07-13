@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
                     If you have any questions about this Privacy Policy or our data practices, please contact us at:
                   </p>
                   <p className="mt-4 text-navy font-medium">
-                    Email: <a href="mailto:anaman@gmail.com" className="text-gold hover:underline">anaman@gmail.com</a>
+                    Email: <a href="mailto:contact@josephanand.com" className="text-gold hover:underline">contact@josephanand.com</a>
                   </p>
                 </div>
 

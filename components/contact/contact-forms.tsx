@@ -47,18 +47,21 @@ export function ContactForms() {
     setStatus('loading')
     
     try {
-      // Send email using mailto as fallback (or integrate with email service)
-      const mailtoLink = `mailto:anaman@gmail.com?subject=Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.comment}`
-      )}`
-      
-      window.location.href = mailtoLink
-      
-      // Simulate success after a short delay
-      setTimeout(() => {
+      // Send email to contact API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
         setStatus('success')
         setFormData({ name: '', email: '', comment: '' })
-      }, 1000)
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     }
@@ -86,13 +89,13 @@ export function ContactForms() {
             
             <div className="space-y-4 mb-8">
               <a
-                href="mailto:anaman@gmail.com"
+                href="mailto:contact@josephanand.com"
                 className="flex items-center gap-3 text-charcoal/70 hover:text-gold transition-colors"
               >
                 <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">
                   <Mail className="h-5 w-5 text-gold" />
                 </div>
-                anaman@gmail.com
+                contact@josephanand.com
               </a>
             </div>
 

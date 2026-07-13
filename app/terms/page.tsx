@@ -88,7 +88,7 @@ export default function TermsPage() {
                     Contact Information
                   </h2>
                   <p className="leading-relaxed">
-                    If you have any questions about these Terms of Service, please contact us at anaman@gmail.com.
+                    If you have any questions about these Terms of Service, please contact us at contact@josephanand.com.
                   </p>
                 </section>
               </div>
