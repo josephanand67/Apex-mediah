@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Youtube, Linkedin, Mail, MapPin } from 'lucide-react'
+import { Facebook, Youtube, Linkedin, Instagram, Mail, MapPin } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 
 const footerLinks = {
@@ -72,6 +72,15 @@ export function Footer() {
               >
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
+              </Link>
+              <Link
+                href={siteConfig.links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-cream/10 text-cream transition-colors duration-100 hover:bg-gold hover:text-navy"
+              >
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
               </Link>
             </div>
           </div>
