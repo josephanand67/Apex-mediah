@@ -115,6 +115,7 @@ export const FeaturedBookCard = memo(function FeaturedBookCard({ book }: Feature
             <BuyNowDropdown
               amazonUrl={book.amazonUrl}
               barnesNobleUrl={book.barnesNobleUrl}
+              partridgeUrl={book.partridgeUrl}
               size="lg"
             />
           </div>
