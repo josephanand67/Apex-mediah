@@ -4,22 +4,22 @@ import { join } from 'path'
 
 export async function GET(request: NextRequest) {
   try {
-    const pdfPath = join(process.cwd(), 'public', 'pdfs', 'pause-on-purpose-cheatsheet.pdf')
+    const filePath = join(process.cwd(), 'public', 'pdfs', 'pause-on-purpose-cheatsheet.jpg')
     
-    const fileBuffer = await readFile(pdfPath)
+    const fileBuffer = await readFile(filePath)
     
     return new NextResponse(fileBuffer, {
       status: 200,
       headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="pause-on-purpose-cheatsheet.pdf"',
+        'Content-Type': 'image/jpeg',
+        'Content-Disposition': 'attachment; filename="pause-on-purpose-cheatsheet.jpg"',
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
       },
     })
   } catch (error) {
-    console.error('PDF download error:', error)
-    return new NextResponse('PDF not found', { status: 404 })
+    console.error('Download error:', error)
+    return new NextResponse('File not found', { status: 404 })
   }
 }
