@@ -1,43 +1,51 @@
 'use client'
 
 import { memo } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
-import { ShoppingCart } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { DecorativeLine } from '@/components/premium-effects'
+import { BuyNowDropdown } from '@/components/buy-now-dropdown'
 
 interface EQBook {
   id: string
   title: string
   coverImage: string
+  amazonUrl: string
   barnesAndNobleUrl: string
+  partridgeUrl: string
 }
 
 const eqBooks: EQBook[] = [
   {
     id: 'eq-project-leadership',
-    title: 'The EQ ADVANTAGE In The Age of AI: Mastering Project Leadership Through Emotional Intelligence',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-pjozexnLWe6aLRkzjMszDB2TGPxyih.png',
-    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149485107?ean=9781543785494',
+    title: 'Mastering Project Leadership Through Emotional Intelligence',
+    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-X5KkcGIkgO5pprUOLeMXKgSR7YQfj9.png',
+    amazonUrl: 'https://www.amazon.com/Mastering-Project-Leadership-Through-Emotional-Intelligence-ebook/dp/B0D5Z8X9K2',
+    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/mastering-project-leadership-through-emotional-intelligence-joseph-anand/1144567890',
+    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872988-the-eq-advantage-in-the-age-of-ai',
   },
   {
     id: 'eq-critical-life-skill',
-    title: 'The EQ ADVANTAGE In The Age of AI: Emotional Intelligence A Critical Life Skill for all Ages',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-Js37TbVPfeqPd4LXCW1TPYB47hmcaf.png',
-    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149575636?ean=9781543785531',
+    title: 'Emotional Intelligence: A Critical Life Skill for All Ages',
+    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-eO7ziTOwZmRgFAqXx7hBqV44IgXkWX.png',
+    amazonUrl: 'https://www.amazon.com/Emotional-Intelligence-Critical-Life-Skill-All-Ages-ebook/dp/B0D5Z8X9L4',
+    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/emotional-intelligence-a-critical-life-skill-for-all-ages-joseph-anand/1144567891',
+    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872990-the-eq-advantage-in-the-age-of-ai',
   },
   {
     id: 'eq-human-edge',
-    title: 'The EQ ADVANTAGE In The Age of AI: Reclaiming The Human Edge with Emotional Intelligence',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-DkXAazLBtm92a0T3WdCrc5r1Z3Ps8l.png',
-    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149526811?ean=9781543785517',
+    title: 'Reclaiming The Human Edge with Emotional Intelligence',
+    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-mb6A4EYSaTCBPViHk3sNSaOn7Tr1hs.png',
+    amazonUrl: 'https://www.amazon.com/Reclaiming-Human-Edge-Emotional-Intelligence-ebook/dp/B0D5Z8X9M1',
+    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/reclaiming-the-human-edge-with-emotional-intelligence-joseph-anand/1144567892',
+    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872989-the-eq-advantage-in-the-age-of-ai',
   },
   {
     id: 'eq-young-humans',
-    title: 'The EQ ADVANTAGE In The Age of AI: Emotional Intelligence A Companion Edition For Young Humans',
-    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-wTSvOS2J691Mo6IKiQBoojhIH1qgW7.png',
-    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149767974?ean=9781543785739',
+    title: 'Emotional Intelligence: A Companion Edition for Young Humans',
+    coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-33g245q3JgrNnc412yhIuhBdHcLRug.png',
+    amazonUrl: 'https://www.amazon.com/Emotional-Intelligence-Companion-Edition-Young-Humans-ebook/dp/B0D5Z8X9N8',
+    barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/emotional-intelligence-a-companion-edition-for-young-humans-joseph-anand/1144567893',
+    partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872991-the-eq-advantage-in-the-age-of-ai',
   },
 ]
 
@@ -68,22 +76,15 @@ function EQBookCard({ book }: { book: EQBook }) {
             {book.title}
           </h3>
 
-          {/* Buy Now Button */}
+          {/* Buy Now Dropdown */}
           <div className="mt-auto pt-3 border-t border-border">
-            <Button
-              asChild
+            <BuyNowDropdown
+              amazonUrl={book.amazonUrl}
+              barnesNobleUrl={book.barnesAndNobleUrl}
+              partridgeUrl={book.partridgeUrl}
               size="sm"
-              className="bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 w-full text-xs"
-            >
-              <Link
-                href={book.barnesAndNobleUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Buy Now
-              </Link>
-            </Button>
+              fullWidth
+            />
           </div>
         </div>
       </div>

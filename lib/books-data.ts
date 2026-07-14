@@ -24,7 +24,6 @@ export const books: Book[] = [
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-X5KkcGIkgO5pprUOLeMXKgSR7YQfj9.png',
     category: 'Emotional Intelligence',
     publishedDate: '2024',
-    featured: true,
   },
   {
     slug: 'emotional-intelligence-critical-life-skill',
@@ -37,7 +36,6 @@ export const books: Book[] = [
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-eO7ziTOwZmRgFAqXx7hBqV44IgXkWX.png',
     category: 'Emotional Intelligence',
     publishedDate: '2024',
-    featured: true,
   },
   {
     slug: 'reclaiming-human-edge',
@@ -50,7 +48,6 @@ export const books: Book[] = [
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-mb6A4EYSaTCBPViHk3sNSaOn7Tr1hs.png',
     category: 'Emotional Intelligence',
     publishedDate: '2024',
-    featured: true,
   },
   {
     slug: 'emotional-intelligence-companion-young-humans',
@@ -63,7 +60,6 @@ export const books: Book[] = [
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-33g245q3JgrNnc412yhIuhBdHcLRug.png',
     category: 'Emotional Intelligence',
     publishedDate: '2024',
-    featured: true,
   },
   {
     slug: 'pause-on-purpose',
