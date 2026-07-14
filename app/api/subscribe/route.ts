@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, firstName, lastName } = await request.json();
+    const { email, firstName, lastName, source } = await request.json();
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -42,7 +42,8 @@ export async function POST(request: NextRequest) {
               <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Name:</strong> ${firstName || ''} ${lastName || ''}${!firstName && !lastName ? '(Not provided)' : ''}</p>
-                <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+                <p><strong>Date & Time:</strong> ${new Date().toLocaleString()}</p>
+                <p><strong>Source:</strong> ${source || 'Not specified'}</p>
               </div>
               <p style="color: #666; font-size: 14px;">This subscriber will receive a confirmation email to verify their subscription.</p>
             </div>

@@ -9,7 +9,7 @@ export const siteConfig = {
     facebook: 'https://www.facebook.com/joe.bro.505',
     youtube: 'https://youtube.com/@josephanand9341',
     linkedin: 'https://www.linkedin.com/in/dr-joseph-anand-75a62413',
-    instagram: 'https://www.instagram.com/josephanand_official',
+    instagram: 'https://www.instagram.com/joseph_anand_sg?igsh=dWoxbnZ0eDdjNnVz&utm_source=qr',
   },
   featuredVideo: 'https://youtu.be/nOHJ_jn03ho',
 }
