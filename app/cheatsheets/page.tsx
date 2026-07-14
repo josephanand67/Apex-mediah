@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Download, FileText, ArrowRight, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Cheat Sheets | Joseph Anand',
@@ -11,10 +12,12 @@ export const metadata: Metadata = {
 const cheatsheets = [
   {
     id: 1,
-    title: 'EQ Foundations Cheat Sheet',
-    description: 'A quick reference guide to the fundamentals of Emotional Intelligence, including self-awareness, self-regulation, motivation, empathy, and social skills.',
+    title: 'Pause On Purpose - 12 Core Practices Cheat Sheet',
+    description: 'A comprehensive visual guide to the 12 core practices of the Pause On Purpose framework. Master the power of pause in different situations with this quick reference.',
     category: 'Emotional Intelligence',
-    downloadLink: '#',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5958285307021037120-wbTG55tGAAVnUX6DCQApIy2is03Qxe.jpg',
+    downloadLink: '/pdfs/pause-on-purpose-cheatsheet.pdf',
+    featured: true,
   },
   {
     id: 2,
@@ -22,6 +25,7 @@ const cheatsheets = [
     description: 'Practical worksheet for mastering communication in project leadership through emotional intelligence principles.',
     category: 'Leadership',
     downloadLink: '#',
+    featured: false,
   },
   {
     id: 3,
@@ -29,6 +33,7 @@ const cheatsheets = [
     description: 'Daily tracker to monitor your emotions, triggers, and responses. Perfect for developing self-awareness skills.',
     category: 'Self-Awareness',
     downloadLink: '#',
+    featured: false,
   },
   {
     id: 4,
@@ -36,6 +41,7 @@ const cheatsheets = [
     description: 'Step-by-step guide to resolving conflicts using emotional intelligence principles for better outcomes.',
     category: 'Conflict Resolution',
     downloadLink: '#',
+    featured: false,
   },
   {
     id: 5,
@@ -43,6 +49,7 @@ const cheatsheets = [
     description: 'Comprehensive toolkit for managing stress and building resilience through EQ techniques.',
     category: 'Stress Management',
     downloadLink: '#',
+    featured: false,
   },
   {
     id: 6,
@@ -50,6 +57,7 @@ const cheatsheets = [
     description: 'Guide to applying emotional intelligence in professional settings to improve relationships and performance.',
     category: 'Professional Development',
     downloadLink: '#',
+    featured: false,
   },
 ]
 
@@ -76,10 +84,61 @@ export default function CheatsheetsPage() {
         </p>
       </section>
 
+      {/* Featured Cheatsheet */}
+      {cheatsheets.find((sheet) => sheet.featured) && (
+        <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mb-16">
+          <div className="bg-card border-2 border-gold rounded-2xl p-8 overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Image */}
+              <div className="relative">
+                <Image
+                  src={cheatsheets.find((sheet) => sheet.featured)?.image || ''}
+                  alt="Pause On Purpose Cheatsheet"
+                  width={500}
+                  height={600}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col justify-center">
+                <span className="inline-block w-fit px-4 py-2 bg-gold/10 text-gold text-sm font-semibold rounded-full mb-4">
+                  Featured Resource
+                </span>
+                <h2 className="font-serif text-3xl font-bold text-navy mb-4">
+                  {cheatsheets.find((sheet) => sheet.featured)?.title}
+                </h2>
+                <p className="text-charcoal/70 text-lg mb-8 leading-relaxed">
+                  {cheatsheets.find((sheet) => sheet.featured)?.description}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href={cheatsheets.find((sheet) => sheet.featured)?.downloadLink}
+                    download
+                    className="inline-flex items-center justify-center gap-3 px-6 py-4 bg-gold text-navy rounded-lg hover:bg-gold/90 transition-colors duration-200 font-semibold group"
+                  >
+                    <Download className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                    <span>Download PDF</span>
+                  </a>
+                  <Link
+                    href="/#inner-circle"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy text-navy rounded-lg hover:bg-navy hover:text-cream transition-colors duration-200 font-semibold"
+                  >
+                    <span>Join Inner Circle</span>
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Cheatsheets Grid */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <h2 className="font-serif text-3xl font-bold text-navy mb-8">All Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cheatsheets.map((sheet) => (
+          {cheatsheets.filter((sheet) => !sheet.featured).map((sheet) => (
             <div
               key={sheet.id}
               className="group h-full bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-gold transition-all duration-300 flex flex-col"
@@ -98,11 +157,15 @@ export default function CheatsheetsPage() {
               </p>
 
               {/* Download Button */}
-              <button className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-navy text-cream rounded-lg hover:bg-gold hover:text-navy transition-colors duration-200 font-medium group/btn">
+              <a
+                href={sheet.downloadLink}
+                download
+                className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-navy text-cream rounded-lg hover:bg-gold hover:text-navy transition-colors duration-200 font-medium group/btn"
+              >
                 <Download className="h-4 w-4 group-hover/btn:scale-110 transition-transform" />
                 <span>Download PDF</span>
                 <ArrowRight className="h-4 w-4 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-              </button>
+              </a>
             </div>
           ))}
         </div>
