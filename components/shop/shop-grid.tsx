@@ -24,8 +24,9 @@ const BookGridItem = memo(function BookGridItem({
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover hover:scale-102 transition-transform duration-150"
-            loading="lazy"
-            quality={95}
+            loading={book.featured ? undefined : "lazy"}
+            quality={85}
+            priority={book.featured}
             style={{ 
               objectFit: 'cover',
               objectPosition: 'right center'
@@ -54,19 +55,10 @@ const BookGridItem = memo(function BookGridItem({
           <BuyNowDropdown
             amazonUrl={book.amazonUrl}
             barnesNobleUrl={book.barnesNobleUrl}
+            partridgeUrl={book.partridgeUrl}
             size="sm"
             fullWidth
           />
-          <Button
-            asChild
-            size="sm"
-            variant="outline"
-            className="border-navy text-navy hover:bg-navy hover:text-cream"
-          >
-            <Link href={`/books/${book.slug}`} prefetch={true}>
-              Details
-            </Link>
-          </Button>
         </div>
       </div>
     </div>

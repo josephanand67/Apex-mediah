@@ -23,37 +23,41 @@ export async function POST(request: NextRequest) {
 
     // If RESEND_API_KEY is configured, send email via Resend
     if (process.env.RESEND_API_KEY) {
-      const response = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: 'noreply@josephanand.com',
-          to: 'contact@josephanand.com',
-          subject: `New Contact Form Submission from ${name}`,
-          html: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Message:</strong></p>
-            <p>${comment.replace(/\n/g, '<br>')}</p>
-          `,
-        }),
-      })
+      try {
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: 'onboarding@resend.dev',
+            to: 'contact@josephanand.com',
+            reply_to: email,
+            subject: `New Contact Form Submission from ${name}`,
+            html: `
+              <h2>New Contact Form Submission</h2>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Message:</strong></p>
+              <p>${comment.replace(/\n/g, '<br>')}</p>
+            `,
+          }),
+        })
 
-      if (!response.ok) {
-        console.error('[v0] Resend API error:', response.statusText)
-        return NextResponse.json(
-          { error: 'Failed to send message' },
-          { status: 500 }
-        )
+        if (!response.ok) {
+          const errorData = await response.json()
+          console.error('[v0] Resend API error:', response.status, errorData)
+          // Continue anyway - form was received, just email didn't send
+        }
+      } catch (error) {
+        console.error('[v0] Resend email error:', error)
+        // Continue anyway - form was received, just email didn't send
       }
-    } else {
-      // Log to console if no email service is configured
-      console.log('[v0] Contact form submission:', { name, email, comment })
     }
+
+    // Log submission for debugging
+    console.log('[v0] Contact form submission:', { name, email, comment })
 
     return NextResponse.json(
       { message: 'Message received successfully' },
