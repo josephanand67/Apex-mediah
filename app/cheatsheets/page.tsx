@@ -16,7 +16,7 @@ const cheatsheets = [
     description: 'A comprehensive visual guide to the 12 core practices of the Pause On Purpose framework. Master the power of pause in different situations with this quick reference.',
     category: 'Emotional Intelligence',
     image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5958285307021037120-wbTG55tGAAVnUX6DCQApIy2is03Qxe.jpg',
-    downloadLink: '/pdfs/pause-on-purpose-cheatsheet.pdf',
+    downloadLink: '/api/download/pause-on-purpose',
     featured: true,
   },
   {
@@ -114,7 +114,6 @@ export default function CheatsheetsPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
                     href={cheatsheets.find((sheet) => sheet.featured)?.downloadLink}
-                    download
                     className="inline-flex items-center justify-center gap-3 px-6 py-4 bg-gold text-navy rounded-lg hover:bg-gold/90 transition-colors duration-200 font-semibold group"
                   >
                     <Download className="h-5 w-5 group-hover:scale-110 transition-transform" />
@@ -134,42 +133,7 @@ export default function CheatsheetsPage() {
         </section>
       )}
 
-      {/* Cheatsheets Grid */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl font-bold text-navy mb-8">All Resources</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cheatsheets.filter((sheet) => !sheet.featured).map((sheet) => (
-            <div
-              key={sheet.id}
-              className="group h-full bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-gold transition-all duration-300 flex flex-col"
-            >
-              {/* Category Badge */}
-              <span className="inline-block w-fit px-3 py-1 bg-gold/10 text-gold text-sm font-semibold rounded-full mb-4">
-                {sheet.category}
-              </span>
 
-              {/* Content */}
-              <h3 className="font-serif text-xl font-bold text-navy mb-3 group-hover:text-gold transition-colors">
-                {sheet.title}
-              </h3>
-              <p className="text-charcoal/60 text-sm mb-6 flex-grow">
-                {sheet.description}
-              </p>
-
-              {/* Download Button */}
-              <a
-                href={sheet.downloadLink}
-                download
-                className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-navy text-cream rounded-lg hover:bg-gold hover:text-navy transition-colors duration-200 font-medium group/btn"
-              >
-                <Download className="h-4 w-4 group-hover/btn:scale-110 transition-transform" />
-                <span>Download PDF</span>
-                <ArrowRight className="h-4 w-4 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 mt-20 pt-12 border-t border-border text-center">
