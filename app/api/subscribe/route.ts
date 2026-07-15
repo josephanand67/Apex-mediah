@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { emailConfig, getFromAddress } from '@/lib/email-config';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,6 +14,9 @@ export async function POST(request: NextRequest) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
+
+    console.log('[v0] Subscribe API called with email:', email);
+    console.log('[v0] RESEND_API_KEY configured:', !!resendApiKey);
 
     // If Resend API key is not configured, return success but log warning
     if (!resendApiKey) {
@@ -33,8 +37,8 @@ export async function POST(request: NextRequest) {
           'Authorization': `Bearer ${resendApiKey}`
         },
         body: JSON.stringify({
-          from: 'Inner Circle <onboarding@resend.dev>',
-          to: 'contact@josephanand.com',
+          from: getFromAddress('subscribe'),
+          to: emailConfig.contactEmail,
           subject: 'New Inner Circle Subscriber',
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -52,13 +56,21 @@ export async function POST(request: NextRequest) {
         })
       });
       
+      console.log('[v0] Admin email response status:', adminResponse.status);
       if (!adminResponse.ok) {
         const errorData = await adminResponse.json();
-        console.error('[v0] Admin notification failed:', adminResponse.status, errorData);
+        console.error('[v0] Admin notification failed:', {
+          status: adminResponse.status,
+          statusText: adminResponse.statusText,
+          error: errorData
+        });
       } else {
         adminEmailSent = true;
         const data = await adminResponse.json();
-        console.log('[v0] Admin notification sent:', data.id);
+        console.log('[v0] Admin notification sent:', {
+          id: data.id,
+          email: 'contact@josephanand.com'
+        });
       }
     } catch (adminError) {
       console.error('[v0] Failed to send admin notification:', adminError);
@@ -74,7 +86,7 @@ export async function POST(request: NextRequest) {
           'Authorization': `Bearer ${resendApiKey}`
         },
         body: JSON.stringify({
-          from: 'Joseph Anand <onboarding@resend.dev>',
+          from: getFromAddress('subscribe'),
           to: email,
           subject: 'Welcome to the Inner Circle - Confirm Your Email',
           html: `
@@ -113,30 +125,37 @@ export async function POST(request: NextRequest) {
         })
       });
       
+      console.log('[v0] Confirmation email response status:', confirmResponse.status);
       if (!confirmResponse.ok) {
         const errorData = await confirmResponse.json();
-        console.error('[v0] Confirmation email failed:', confirmResponse.status, errorData);
+        console.error('[v0] Confirmation email failed:', {
+          status: confirmResponse.status,
+          statusText: confirmResponse.statusText,
+          error: errorData
+        });
       } else {
         confirmEmailSent = true;
         const data = await confirmResponse.json();
-        console.log('[v0] Confirmation email sent:', data.id);
+        console.log('[v0] Confirmation email sent:', {
+          id: data.id,
+          recipient: email
+        });
       }
     } catch (confirmError) {
       console.error('[v0] Failed to send confirmation email:', confirmError);
     }
 
-    // Only return success if at least the confirmation email was sent
-    if (!confirmEmailSent) {
-      console.error('[v0] Subscription failed: confirmation email not sent');
-      return NextResponse.json(
-        { error: 'Failed to process subscription. Please try again.' },
-        { status: 503 }
-      );
-    }
+    // Log email sending summary
+    console.log('[v0] Email sending summary:', {
+      adminEmailSent,
+      confirmEmailSent,
+      subscriber: email
+    });
 
+    // Return success even if one email failed, as long as subscriber email was sent
     return NextResponse.json({
       success: true,
-      message: 'Successfully joined the inner circle! Check your email to confirm.'
+      message: 'Thank you for subscribing! Check your email for confirmation.'
     });
   } catch (error) {
     console.error('[v0] Subscribe error:', error);

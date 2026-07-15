@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { emailConfig, getFromAddress } from '@/lib/email-config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,6 +24,8 @@ export async function POST(request: NextRequest) {
 
     // Get RESEND_API_KEY if configured
     const resendApiKey = process.env.RESEND_API_KEY
+    console.log('[v0] Contact API called with email:', email);
+    console.log('[v0] RESEND_API_KEY configured:', !!resendApiKey);
     if (!resendApiKey) {
       console.warn('[v0] RESEND_API_KEY is not configured - using fallback logging mode')
     }
@@ -62,14 +65,15 @@ export async function POST(request: NextRequest) {
             Authorization: `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            from: 'Contact Form <onboarding@resend.dev>',
-            to: 'contact@josephanand.com',
+            from: getFromAddress('contact'),
+            to: emailConfig.contactEmail,
             reply_to: email,
             subject: `New Contact Form Submission${subject ? ` - ${subject}` : ''} from ${name}`,
             html: contactEmailHtml,
           }),
         })
 
+        console.log('[v0] Resend API response status:', response.status);
         if (!response.ok) {
           let errorData;
           try {
@@ -81,6 +85,7 @@ export async function POST(request: NextRequest) {
             status: response.status,
             statusText: response.statusText,
             error: errorData,
+            recipient: 'contact@josephanand.com'
           })
           return NextResponse.json(
             { error: 'Failed to send email. Please try again later.' },
