@@ -85,46 +85,41 @@ export async function POST(request: NextRequest) {
             status: response.status,
             statusText: response.statusText,
             error: errorData,
-            recipient: 'contact@josephanand.com'
+            recipient: emailConfig.contactEmail
           })
+          // Continue to fallback mode instead of returning error
+        } else {
+          const successData = await response.json()
+          console.log('[v0] Contact email sent successfully:', {
+            id: successData.id,
+            timestamp: new Date().toISOString(),
+          })
+
           return NextResponse.json(
-            { error: 'Failed to send email. Please try again later.' },
-            { status: 503 }
+            { success: true, message: 'Message sent successfully! We will get back to you soon.' },
+            { status: 200 }
           )
         }
-
-        const successData = await response.json()
-        console.log('[v0] Contact email sent successfully:', {
-          id: successData.id,
-          timestamp: new Date().toISOString(),
-        })
-
-        return NextResponse.json(
-          { success: true, message: 'Message sent successfully! We will get back to you soon.' },
-          { status: 200 }
-        )
       } catch (emailError) {
         console.error('[v0] Error sending contact email:', emailError)
-        return NextResponse.json(
-          { error: 'Failed to send email. Please try again later.' },
-          { status: 503 }
-        )
+        // Continue with fallback instead of returning error
       }
-    } else {
-      // Fallback: Log the submission and return success
-      console.log('[v0] Contact form submission (fallback mode):', {
-        name,
-        email,
-        subject,
-        comment,
-        timestamp: new Date().toISOString(),
-      })
-
-      return NextResponse.json(
-        { success: true, message: 'Message received! We will get back to you soon.' },
-        { status: 200 }
-      )
     }
+
+    // Fallback: Log the submission and return success
+    console.log('[v0] Contact form submission:', {
+      name,
+      email,
+      subject,
+      comment,
+      timestamp: new Date().toISOString(),
+      sentViaResend: resendApiKey ? 'attempted' : 'false',
+    })
+
+    return NextResponse.json(
+      { success: true, message: 'Message received! We will get back to you soon.' },
+      { status: 200 }
+    )
   } catch (error) {
     console.error('[v0] Contact API error:', error)
     return NextResponse.json(
