@@ -24,15 +24,16 @@ export async function POST(request: NextRequest) {
     }
 
     // Send admin notification email
+    let adminEmailSent = false;
     try {
-      await fetch('https://api.resend.com/emails', {
+      const adminResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${resendApiKey}`
         },
         body: JSON.stringify({
-          from: 'noreply@josephanand.com',
+          from: 'Inner Circle <onboarding@resend.dev>',
           to: 'contact@josephanand.com',
           subject: 'New Inner Circle Subscriber',
           html: `
@@ -50,20 +51,30 @@ export async function POST(request: NextRequest) {
           `
         })
       });
+      
+      if (!adminResponse.ok) {
+        const errorData = await adminResponse.json();
+        console.error('[v0] Admin notification failed:', adminResponse.status, errorData);
+      } else {
+        adminEmailSent = true;
+        const data = await adminResponse.json();
+        console.log('[v0] Admin notification sent:', data.id);
+      }
     } catch (adminError) {
       console.error('[v0] Failed to send admin notification:', adminError);
     }
 
     // Send confirmation email to subscriber
+    let confirmEmailSent = false;
     try {
-      await fetch('https://api.resend.com/emails', {
+      const confirmResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${resendApiKey}`
         },
         body: JSON.stringify({
-          from: 'noreply@josephanand.com',
+          from: 'Joseph Anand <onboarding@resend.dev>',
           to: email,
           subject: 'Welcome to the Inner Circle - Confirm Your Email',
           html: `
@@ -101,8 +112,26 @@ export async function POST(request: NextRequest) {
           `
         })
       });
+      
+      if (!confirmResponse.ok) {
+        const errorData = await confirmResponse.json();
+        console.error('[v0] Confirmation email failed:', confirmResponse.status, errorData);
+      } else {
+        confirmEmailSent = true;
+        const data = await confirmResponse.json();
+        console.log('[v0] Confirmation email sent:', data.id);
+      }
     } catch (confirmError) {
       console.error('[v0] Failed to send confirmation email:', confirmError);
+    }
+
+    // Only return success if at least the confirmation email was sent
+    if (!confirmEmailSent) {
+      console.error('[v0] Subscription failed: confirmation email not sent');
+      return NextResponse.json(
+        { error: 'Failed to process subscription. Please try again.' },
+        { status: 503 }
+      );
     }
 
     return NextResponse.json({
