@@ -13,6 +13,7 @@ export function ContactForms() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     comment: '',
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -56,13 +57,17 @@ export function ContactForms() {
         body: JSON.stringify(formData),
       })
 
-      if (response.ok) {
+      const data = await response.json()
+      
+      if (response.ok || data.success) {
         setStatus('success')
-        setFormData({ name: '', email: '', comment: '' })
+        setFormData({ name: '', email: '', subject: '', comment: '' })
       } else {
+        console.error('[v0] Form submission error:', data)
         setStatus('error')
       }
-    } catch {
+    } catch (error) {
+      console.error('[v0] Form submission failed:', error)
       setStatus('error')
     }
   }
@@ -197,6 +202,19 @@ export function ContactForms() {
                     {errors.email && (
                       <p className="text-sm text-red-500 mt-1">{errors.email}</p>
                     )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-charcoal mb-2">
+                      Subject
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="What is this about?"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="h-12"
+                    />
                   </div>
 
                   <div>
