@@ -9,6 +9,8 @@ import { useToast } from '@/hooks/use-toast'
 
 export const NewsletterSection = memo(function NewsletterSection() {
   const [email, setEmail] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const { toast } = useToast()
@@ -25,13 +27,22 @@ export const NewsletterSection = memo(function NewsletterSection() {
       return
     }
 
+    if (!firstName.trim()) {
+      toast({
+        variant: 'destructive',
+        title: 'Name Required',
+        description: 'Please enter your first name.',
+      })
+      return
+    }
+
     setLoading(true)
 
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, firstName, lastName, source: 'homepage' }),
       })
 
       const data = await response.json()
@@ -39,9 +50,11 @@ export const NewsletterSection = memo(function NewsletterSection() {
       if (response.ok) {
         setSubmitted(true)
         setEmail('')
+        setFirstName('')
+        setLastName('')
         toast({
-          title: 'Thank You for Joining!',
-          description: 'Check your email to confirm your subscription.',
+          title: 'Welcome to the Inner Circle!',
+          description: 'You&apos;ve been successfully subscribed. Check your email for exclusive content.',
         })
 
         // Reset form after 5 seconds
@@ -93,31 +106,68 @@ export const NewsletterSection = memo(function NewsletterSection() {
             <div className="mt-10 max-w-lg mx-auto p-6 bg-white rounded-lg border border-gold/20">
               <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
               <h3 className="text-xl font-serif font-bold text-navy mb-2">
-                Thank You for Joining!
+                Welcome to the Inner Circle!
               </h3>
               <p className="text-charcoal/70 mb-4">
-                Check your email to confirm your subscription. We&apos;ve also sent you a notification, and you&apos;ll start receiving our exclusive content soon.
+                You&apos;re all set! Check your email for your welcome message and exclusive content. You&apos;ll start receiving our insights on emotional intelligence and leadership right away.
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="mt-10 flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <div className="relative flex-1">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-charcoal/40" />
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={loading}
-                  className="pl-12 h-14 bg-card border-border focus:border-gold focus:ring-gold text-base disabled:opacity-50"
-                  required
-                />
+            <form onSubmit={handleSubmit} className="mt-10 max-w-lg mx-auto">
+              <div className="space-y-4 mb-6">
+                {/* Name Fields */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1">
+                    <Input
+                      type="text"
+                      placeholder="First Name *"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      disabled={loading}
+                      className="h-12 bg-card border-border focus:border-gold focus:ring-gold text-base disabled:opacity-50"
+                      required
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <Input
+                      type="text"
+                      placeholder="Last Name (Optional)"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      disabled={loading}
+                      className="h-12 bg-card border-border focus:border-gold focus:ring-gold text-base disabled:opacity-50"
+                    />
+                  </div>
+                </div>
+
+                {/* Email Field */}
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-charcoal/40" />
+                  <Input
+                    type="email"
+                    placeholder="Enter your email *"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    className="pl-12 h-12 bg-card border-border focus:border-gold focus:ring-gold text-base disabled:opacity-50"
+                    required
+                  />
+                </div>
               </div>
+
+              {/* Consent Disclaimer */}
+              <div className="mb-6 p-4 bg-cream/50 rounded-lg border border-gold/10">
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  By subscribing, you agree to receive emails, newsletters, promotional content, and updates from us. We respect your privacy and you can unsubscribe at any time through the link in any email. Your information will be handled in accordance with our <a href="/privacy-policy" className="text-gold hover:underline">Privacy Policy</a>.
+                </p>
+              </div>
+
+              {/* Subscribe Button */}
               <Button
                 type="submit"
                 size="lg"
                 disabled={loading}
-                className="h-14 px-8 bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 disabled:opacity-50"
+                className="w-full h-12 bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 disabled:opacity-50"
               >
                 {loading ? (
                   <>

@@ -1,6 +1,6 @@
 export function BooksHero() {
   return (
-    <section className="relative pt-32 pb-20 bg-navy">
+    <section className="relative pt-0 pb-20 bg-navy">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         <span className="inline-block px-4 py-2 bg-gold/20 text-gold text-sm font-semibold uppercase tracking-widest rounded-full mb-6">
           12 Published Works

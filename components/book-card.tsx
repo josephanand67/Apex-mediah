@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { memo } from 'react'
 import type { Book } from '@/lib/books-data'
 import { BuyNowDropdown } from '@/components/buy-now-dropdown'
+import { Button } from '@/components/ui/button'
 
 interface BookCardProps {
   book: Book
@@ -103,20 +104,26 @@ export const FeaturedBookCard = memo(function FeaturedBookCard({ book }: Feature
           <p className="text-lg text-charcoal/80 leading-relaxed mb-6">
             {book.description}
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href={`/books/${book.slug}`}
-              prefetch={true}
-              className="inline-flex items-center px-6 py-3 bg-navy text-cream font-medium rounded-lg hover:bg-gold hover:text-navy transition-colors duration-100"
+          <div className="flex flex-col sm:flex-row gap-4 w-full">
+            <Button
+              asChild
+              size="lg"
+              className="bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 w-full sm:w-auto"
             >
-              Read More
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+              <Link
+                href={`/books/${book.slug}`}
+                prefetch={true}
+              >
+                Read More
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
             <BuyNowDropdown
               amazonUrl={book.amazonUrl}
               barnesNobleUrl={book.barnesNobleUrl}
               partridgeUrl={book.partridgeUrl}
               size="lg"
+              fullWidth={true}
             />
           </div>
         </div>

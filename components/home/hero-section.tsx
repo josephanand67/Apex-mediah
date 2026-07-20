@@ -87,7 +87,7 @@ export const HeroSection = memo(function HeroSection() {
                   src="/images/author-portrait.png"
                   alt="Joseph Anand - Author, Speaker, Executive Coach"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-center sm:object-top"
                   priority
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 500px"
                   fetchPriority="high"
