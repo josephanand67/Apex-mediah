@@ -33,7 +33,7 @@ export const BuyNowDropdown = memo(function BuyNowDropdown({
       <DropdownMenuTrigger asChild>
         <Button
           size={size}
-          className={`bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-75 ${fullWidth ? 'w-full' : ''} ${className}`}
+          className={`bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-75 ${fullWidth ? 'w-full sm:w-auto' : ''} ${className}`}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
           Buy Now

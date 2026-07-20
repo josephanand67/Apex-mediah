@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, Share2, BookOpen } from 'lucide-react'
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ScrollReveal } from '@/components/premium-effects'
 import { BuyNowDropdown } from '@/components/buy-now-dropdown'
+import { useToast } from '@/components/ui/use-toast'
 import type { Book } from '@/lib/books-data'
 
 interface BookDetailProps {
@@ -14,6 +15,50 @@ interface BookDetailProps {
 }
 
 export const BookDetail = memo(function BookDetail({ book }: BookDetailProps) {
+  const [isSharing, setIsSharing] = useState(false)
+  const { toast } = useToast()
+
+  const handleShare = async () => {
+    setIsSharing(true)
+    try {
+      const shareData = {
+        title: book.title,
+        text: `${book.title} by Joseph Anand - ${book.subtitle}`,
+        url: typeof window !== 'undefined' ? window.location.href : '',
+      }
+
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Fallback: Copy URL to clipboard
+        await navigator.clipboard.writeText(shareData.url)
+        toast({
+          title: 'Copied!',
+          description: 'Page link copied to clipboard',
+        })
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error('[v0] Share error:', error)
+        // Fallback: Copy to clipboard if share fails
+        try {
+          await navigator.clipboard.writeText(window.location.href)
+          toast({
+            title: 'Copied!',
+            description: 'Page link copied to clipboard',
+          })
+        } catch (clipboardError) {
+          toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: 'Unable to share',
+          })
+        }
+      }
+    } finally {
+      setIsSharing(false)
+    }
+  }
   return (
     <section className="pt-32 pb-20 bg-cream">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -90,20 +135,23 @@ export const BookDetail = memo(function BookDetail({ book }: BookDetailProps) {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
               <BuyNowDropdown
                 amazonUrl={book.amazonUrl}
                 barnesNobleUrl={book.barnesNobleUrl}
                 partridgeUrl={book.partridgeUrl}
                 size="lg"
+                fullWidth={true}
               />
               <Button
+                onClick={handleShare}
+                disabled={isSharing}
                 size="lg"
                 variant="outline"
-                className="border-2 border-navy text-navy hover:bg-navy hover:text-cream transition-all duration-300"
+                className="border-2 border-navy text-navy hover:bg-navy hover:text-cream transition-all duration-300 w-full sm:w-auto"
               >
                 <Share2 className="mr-2 h-4 w-4" />
-                Share
+                {isSharing ? 'Sharing...' : 'Share'}
               </Button>
             </div>
           </ScrollReveal>
