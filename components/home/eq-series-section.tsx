@@ -77,7 +77,7 @@ function EQBookCard({ book }: { book: EQBook }) {
               amazonUrl=""
               barnesNobleUrl={book.barnesAndNobleUrl}
               partridgeUrl={book.partridgeUrl}
-              size="sm"
+              size="md"
               fullWidth
             />
           </div>
