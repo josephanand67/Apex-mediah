@@ -23,7 +23,7 @@ export function AboutHero() {
           <div className="relative aspect-[4/5] max-w-md mx-auto">
             <div className="absolute inset-0 rounded-2xl shadow-2xl overflow-hidden">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dp%20change-Y3QWlAvVvXcdz2U9vMF68P5FiwXpT7.jpeg"
+                src="/images/author-portrait.png"
                 alt="Joseph Anand - Author, Speaker, Executive Coach"
                 fill
                 className="object-cover object-top"
