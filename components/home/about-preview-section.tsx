@@ -22,7 +22,7 @@ export const AboutPreviewSection = memo(function AboutPreviewSection() {
             <div className="relative w-full max-w-md mx-auto">
               <div className="relative aspect-square rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
                 <Image
-                  src="/images/author-portrait.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dp%20change-Y3QWlAvVvXcdz2U9vMF68P5FiwXpT7.jpeg"
                   alt="Joseph Anand - Executive Coach & Author"
                   fill
                   className="object-cover object-top"
