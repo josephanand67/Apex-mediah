@@ -9,6 +9,7 @@ interface EQBook {
   id: string
   title: string
   coverImage: string
+  amazonUrl: string
   barnesAndNobleUrl: string
   partridgeUrl: string
 }
@@ -18,6 +19,7 @@ const eqBooks: EQBook[] = [
     id: 'eq-project-leadership',
     title: 'Mastering Project Leadership Through Emotional Intelligence',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-X5KkcGIkgO5pprUOLeMXKgSR7YQfj9.png',
+    amazonUrl: 'https://a.co/d/0hMa1rX5',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149485107?ean=9781543785487',
     partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872988-the-eq-advantage-in-the-age-of-ai',
   },
@@ -25,6 +27,7 @@ const eqBooks: EQBook[] = [
     id: 'eq-critical-life-skill',
     title: 'Emotional Intelligence: A Critical Life Skill for All Ages',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-eO7ziTOwZmRgFAqXx7hBqV44IgXkWX.png',
+    amazonUrl: 'https://a.co/d/052PQGLM',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149575636?ean=9781543785524',
     partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872990-the-eq-advantage-in-the-age-of-ai',
   },
@@ -32,6 +35,7 @@ const eqBooks: EQBook[] = [
     id: 'eq-human-edge',
     title: 'Reclaiming The Human Edge with Emotional Intelligence',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-mb6A4EYSaTCBPViHk3sNSaOn7Tr1hs.png',
+    amazonUrl: 'https://a.co/d/0boQXVEf',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149526811?ean=9781543785500',
     partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872989-the-eq-advantage-in-the-age-of-ai',
   },
@@ -39,6 +43,7 @@ const eqBooks: EQBook[] = [
     id: 'eq-young-humans',
     title: 'Emotional Intelligence: A Companion Edition for Young Humans',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-33g245q3JgrNnc412yhIuhBdHcLRug.png',
+    amazonUrl: 'https://a.co/d/0gwKfKB6',
     barnesAndNobleUrl: 'https://www.barnesandnoble.com/w/the-eq-advantage-in-the-age-of-ai-joseph-anand/1149767974?ean=9781543785746',
     partridgeUrl: 'https://www.partridgepublishing.com/en-sg/bookstore/bookdetails/872991-the-eq-advantage-in-the-age-of-ai',
   },
@@ -74,7 +79,7 @@ function EQBookCard({ book }: { book: EQBook }) {
           {/* Buy Now Dropdown — compact, right-aligned */}
           <div className="mt-auto pt-3 border-t border-border flex justify-end">
             <BuyNowDropdown
-              amazonUrl=""
+              amazonUrl={book.amazonUrl}
               barnesNobleUrl={book.barnesAndNobleUrl}
               partridgeUrl={book.partridgeUrl}
               size="sm"
