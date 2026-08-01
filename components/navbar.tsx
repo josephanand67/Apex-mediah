@@ -32,7 +32,7 @@ function NavbarComponent() {
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-32 items-center justify-between">
+        <div className="flex h-16 sm:h-20 lg:h-24 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group hidden sm:flex items-center gap-3" prefetch={true}>
             <Image
@@ -40,7 +40,7 @@ function NavbarComponent() {
               alt="L.I.F.E. manifested LLP"
               width={320}
               height={107}
-              className="h-28 w-auto object-contain"
+              className="h-14 sm:h-16 lg:h-20 w-auto object-contain"
               priority
             />
           </Link>
