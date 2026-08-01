@@ -15,7 +15,7 @@ export const HeroSection = memo(function HeroSection() {
         <div className="absolute bottom-0 left-0 w-[250px] h-[250px] bg-navy/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-32">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-24 sm:pb-20 lg:pt-32 lg:pb-32">
         <div className="grid gap-8 sm:gap-10 lg:gap-16 lg:grid-cols-2 items-center lg:items-center">
           {/* Content - displayed second on mobile, first on desktop */}
           <div className="order-2 lg:order-1">
