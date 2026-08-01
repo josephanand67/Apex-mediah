@@ -47,7 +47,7 @@ const eqBooks: EQBook[] = [
 function EQBookCard({ book }: { book: EQBook }) {
   return (
     <div className="group h-full">
-      <div className="relative overflow-hidden rounded-xl bg-card shadow-lg hover:shadow-xl transition-shadow duration-150 border border-border hover:border-gold/30 h-full flex flex-col">
+      <div className="relative overflow-hidden rounded-xl bg-card shadow-md hover:shadow-lg transition-shadow duration-150 border border-border hover:border-gold/30 h-full flex flex-col">
         {/* Book Cover */}
         <div className="relative w-full aspect-[3/4] overflow-hidden bg-white flex items-center justify-center">
           <Image
@@ -66,19 +66,19 @@ function EQBookCard({ book }: { book: EQBook }) {
         </div>
 
         {/* Content */}
-        <div className="flex flex-col flex-1 p-5">
-          <h3 className="font-serif font-bold text-navy text-sm line-clamp-2 mb-3">
+        <div className="flex flex-col flex-1 p-4">
+          <h3 className="font-serif font-semibold text-navy text-sm leading-snug line-clamp-2 mb-3">
             {book.title}
           </h3>
 
-          {/* Buy Now Dropdown */}
-          <div className="mt-auto pt-3 border-t border-border">
+          {/* Buy Now Dropdown — compact, right-aligned */}
+          <div className="mt-auto pt-3 border-t border-border flex justify-end">
             <BuyNowDropdown
               amazonUrl=""
               barnesNobleUrl={book.barnesAndNobleUrl}
               partridgeUrl={book.partridgeUrl}
-              size="md"
-              fullWidth
+              size="sm"
+              className="rounded-lg px-4 text-xs font-semibold tracking-wide"
             />
           </div>
         </div>
@@ -106,7 +106,7 @@ export const EQSeriesSection = memo(function EQSeriesSection() {
         </div>
 
         {/* Books Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <div className="grid gap-5 grid-cols-2 lg:grid-cols-4">
           {eqBooks.map((book) => (
             <EQBookCard key={book.id} book={book} />
           ))}
