@@ -84,7 +84,7 @@ export const HeroSection = memo(function HeroSection() {
               <div className="absolute inset-0 bg-gold/10 rounded-2xl blur-xl" />
               <div className="absolute inset-0 rounded-2xl shadow-xl overflow-hidden">
                 <Image
-                  src="/images/author-portrait.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dp%20change-Y3QWlAvVvXcdz2U9vMF68P5FiwXpT7.jpeg"
                   alt="Joseph Anand - Author, Speaker, Executive Coach"
                   fill
                   className="object-cover object-center sm:object-top"
