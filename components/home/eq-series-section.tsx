@@ -2,11 +2,13 @@
 
 import { memo } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { DecorativeLine } from '@/components/premium-effects'
-import { BuyNowDropdown } from '@/components/buy-now-dropdown'
 
 interface EQBook {
   id: string
+  slug: string
   title: string
   coverImage: string
   amazonUrl: string
@@ -17,6 +19,7 @@ interface EQBook {
 const eqBooks: EQBook[] = [
   {
     id: 'eq-project-leadership',
+    slug: 'mastering-project-leadership',
     title: 'Mastering Project Leadership Through Emotional Intelligence',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_36_03%20AM-X5KkcGIkgO5pprUOLeMXKgSR7YQfj9.png',
     amazonUrl: 'https://a.co/d/0hMa1rX5',
@@ -25,6 +28,7 @@ const eqBooks: EQBook[] = [
   },
   {
     id: 'eq-critical-life-skill',
+    slug: 'emotional-intelligence-critical-life-skill',
     title: 'Emotional Intelligence: A Critical Life Skill for All Ages',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_42_10%20AM-eO7ziTOwZmRgFAqXx7hBqV44IgXkWX.png',
     amazonUrl: 'https://a.co/d/052PQGLM',
@@ -33,6 +37,7 @@ const eqBooks: EQBook[] = [
   },
   {
     id: 'eq-human-edge',
+    slug: 'reclaiming-human-edge',
     title: 'Reclaiming The Human Edge with Emotional Intelligence',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_40_29%20AM-mb6A4EYSaTCBPViHk3sNSaOn7Tr1hs.png',
     amazonUrl: 'https://a.co/d/0boQXVEf',
@@ -41,6 +46,7 @@ const eqBooks: EQBook[] = [
   },
   {
     id: 'eq-young-humans',
+    slug: 'emotional-intelligence-companion-young-humans',
     title: 'Emotional Intelligence: A Companion Edition for Young Humans',
     coverImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%208%2C%202026%2C%2006_34_03%20AM-33g245q3JgrNnc412yhIuhBdHcLRug.png',
     amazonUrl: 'https://a.co/d/0gwKfKB6',
@@ -76,15 +82,15 @@ function EQBookCard({ book }: { book: EQBook }) {
             {book.title}
           </h3>
 
-          {/* Buy Now Dropdown — compact, right-aligned */}
-          <div className="mt-auto pt-3 border-t border-border flex justify-end">
-            <BuyNowDropdown
-              amazonUrl={book.amazonUrl}
-              barnesNobleUrl={book.barnesAndNobleUrl}
-              partridgeUrl={book.partridgeUrl}
-              size="sm"
-              className="rounded-lg px-4 text-xs font-semibold tracking-wide"
-            />
+          {/* Learn More link */}
+          <div className="mt-auto pt-3 border-t border-border">
+            <Link
+              href={`/shop/${book.slug}`}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold/80 transition-colors duration-150 group/link"
+            >
+              Learn More
+              <ArrowRight className="w-4 h-4 transition-transform duration-150 group-hover/link:translate-x-0.5" />
+            </Link>
           </div>
         </div>
       </div>
