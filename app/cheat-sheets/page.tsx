@@ -1,203 +1,76 @@
-'use client'
-
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
-import { Download, FileText, Loader } from 'lucide-react'
+import { ExternalLink, FileText } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
-import Image from 'next/image'
+
+const sourceHost = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/'
 
 const cheatSheets = [
-  {
-    id: 1,
-    title: 'Pause on Purpose',
-    description: '12 Core Practices to Master the Power of Pause. Learn proven techniques for conscious response in different situations.',
-    category: 'Mindfulness & Leadership',
-    image: '/images/pause-on-purpose-cheatsheet.jpg',
-    isPdfSheet: true,
-  },
-  {
-    id: 2,
-    title: 'Emotional Intelligence Quick Guide',
-    description: 'Master the fundamentals of emotional intelligence with this comprehensive quick reference guide.',
-    category: 'Emotional Intelligence',
-    downloadUrl: '#',
-  },
-  {
-    id: 3,
-    title: 'Leadership Principles Checklist',
-    description: 'A practical checklist for developing and maintaining effective leadership practices.',
-    category: 'Leadership',
-    downloadUrl: '#',
-  },
-  {
-    id: 4,
-    title: 'Positive Psychology Practices',
-    description: 'Daily practices and techniques to build resilience and well-being.',
-    category: 'Personal Development',
-    downloadUrl: '#',
-  },
+  { title: 'Pause on Purpose', description: 'Build the space between stimulus and response with conscious pause practices.', category: 'Mindfulness', image: `${sourceHost}2.%20P%20Series%20Book%20-%20Presence%20%28Summary%20Infographic%29-9cK1tkeuNmuGJuJ2IHN8gjvArOuL9L.png` },
+  { title: 'Positivity', description: 'Direct your emotional energy toward resilience, gratitude, and a more positive life.', category: 'Well-being', image: `${sourceHost}3.%20P%20Series%20Book%20-%20Positivity%20%28Summary%20Infograhic%29-2QOSu7ivdFIlout7Lh02yZD7ouOl94.png` },
+  { title: 'Perception', description: 'See clearly, question assumptions, and choose the lens through which you view the world.', category: 'Self-awareness', image: `${sourceHost}4.%20P%20Series%20Book%20-%20Perception%20%28Summary%20Infographic%29-QOJnPfxMv7kuWZRwq6VV5IXkVIhqCA.png` },
+  { title: 'Paradoxes', description: 'Hold different truths with wisdom and thrive in a polarized world.', category: 'Wisdom', image: `${sourceHost}5.%20P%20Series%20Book%20-%20%20Paradoxes%20%28Summary%20Infographic%29-IPD5Sr8wq1drxfep0XcKYzvKkO1x2C.png` },
+  { title: 'Perspective', description: 'Expand context, understand complexity, and act from a wider view.', category: 'Clarity', image: `${sourceHost}6.%20P%20Series%20Book%20-%20Perspective%20%28Summary%20Infographic%29-XEPSLUzpvlfg9jWWrdAJLViHe4B4i1.png` },
+  { title: 'Pain', description: 'Transform adversity through acceptance, healing, resilience, and meaning.', category: 'Resilience', image: `${sourceHost}7.%20P%20Series%20Book%20-%20Pain%20%28Summary%20Infographic%29-5CFVqlSzrIhKE0NZCXBihxqv83CEPk.png` },
+  { title: 'Pleasure', description: 'Understand desire and create lasting fulfillment through intentional choices.', category: 'Fulfillment', image: `${sourceHost}8.%20P%20Series%20Book%20-%20Pleasure%20%28Summary%20Infographic%29-VmQkjVyfJRfWEVkLf9W0rcmkMoJH5l.png` },
+  { title: 'Purpose', description: 'Discover your calling, align your values, and make a meaningful impact.', category: 'Direction', image: `${sourceHost}9.%20P%20Series%20Book%20-%20Purpose%20%28Summary%20Infographic%29-mjb4qYXMf7MF9b71dR9abwHLaF3Z54.png` },
+  { title: 'Peace', description: 'Cultivate inner calm with daily practices for a chaotic world.', category: 'Inner peace', image: `${sourceHost}10.%20P%20Series%20Book%20-%20Peace%20%28Summary%20Infographic%29-D2VcNHbpuqJ8o334JpWrY9uMBTP7vX.png` },
+  { title: 'Life', description: 'Live fully and meaningfully through self-knowledge, connection, and purpose.', category: 'Personal growth', image: `${sourceHost}11.%20P%20Series%20Book%20-%20LIFE%20%28Summary%20Infographic%29-hq2imU4oVxvkVfVNimu7guUa9yb9fX.png` },
+  { title: 'Priority', description: 'Focus your time, energy, and attention on what truly matters.', category: 'Focus', image: `${sourceHost}12.%20P%20Series%20Book%20-%20Priority%20%28Summary%20Infographic%29-mIDivsEST3zwgsTd3YgTVyi7HxhxcI.png` },
 ]
 
 export default function CheatSheetsPage() {
-  const [downloadingId, setDownloadingId] = useState<number | null>(null)
-
-  const downloadPDF = async (sheet: typeof cheatSheets[0]) => {
-    if (!sheet.isPdfSheet) return
-
-    setDownloadingId(sheet.id)
-    try {
-      // Create a new PDF document
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-      })
-
-      // Fetch the image
-      const img = new window.Image()
-      img.crossOrigin = 'anonymous'
-      img.src = sheet.image
-
-      img.onload = () => {
-        // Get page dimensions
-        const pageWidth = pdf.internal.pageSize.getWidth()
-        const pageHeight = pdf.internal.pageSize.getHeight()
-
-        // Calculate dimensions to fit the image on the page
-        const imgWidth = pageWidth - 20 // 10mm margins on sides
-        const imgHeight = (img.height / img.width) * imgWidth
-
-        // Center the image horizontally
-        const x = 10
-        const y = (pageHeight - imgHeight) / 2
-
-        // Add the image to the PDF
-        const canvas = document.createElement('canvas')
-        canvas.width = img.width
-        canvas.height = img.height
-        const ctx = canvas.getContext('2d')
-        if (ctx) {
-          ctx.drawImage(img, 0, 0)
-          const imgData = canvas.toDataURL('image/jpeg')
-          pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight)
-        }
-
-        // Save the PDF
-        pdf.save(`${sheet.title.replace(/\s+/g, '-').toLowerCase()}.pdf`)
-        setDownloadingId(null)
-      }
-
-      img.onerror = () => {
-        console.error('Failed to load image')
-        setDownloadingId(null)
-      }
-    } catch (error) {
-      console.error('Error generating PDF:', error)
-      setDownloadingId(null)
-    }
-  }
-
   return (
     <>
       <Navbar />
       <main>
-        {/* Hero Section */}
-        <section className="pt-32 pb-12 bg-gradient-to-b from-cream to-white">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-              Quick Reference
-            </span>
-            <h1 className="mt-4 font-serif text-5xl md:text-6xl font-bold text-navy">
-              Cheat Sheets
-            </h1>
-            <p className="mt-6 text-xl text-charcoal/70 max-w-2xl mx-auto">
-              Download practical guides to support your journey in emotional intelligence and personal growth.
-            </p>
-          </div>
+        <section className="bg-gradient-to-b from-cream to-white px-4 pb-14 pt-32 text-center sm:px-6 lg:px-8">
+          <span className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">Quick Reference Library</span>
+          <h1 className="mt-4 font-serif text-5xl font-bold text-navy md:text-6xl">Cheat Sheets &amp; Resources</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/70 md:text-xl">
+            Explore the P Series collection of visual guides for emotional intelligence, personal growth, and meaningful leadership.
+          </p>
         </section>
 
-        {/* Cheat Sheets Grid */}
-        <section className="py-16 bg-white">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="space-y-12">
-              {cheatSheets.map((sheet) => (
-                <div key={sheet.id} className="bg-cream/50 rounded-lg border border-navy/10 overflow-hidden hover:border-gold/30 hover:shadow-sm transition-all duration-200">
-                  <div className="grid md:grid-cols-3 gap-8 p-8">
-                    {/* Image Preview */}
-                    {sheet.image && (
-                      <div className="md:col-span-2">
-                        <div className="relative rounded-lg overflow-hidden bg-white border border-navy/10">
-                          <Image
-                            src={sheet.image}
-                            alt={sheet.title}
-                            width={800}
-                            height={600}
-                            className="w-full h-auto"
-                          />
-                        </div>
-                      </div>
-                    )}
+        <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 flex items-end justify-between gap-6 border-b border-navy/10 pb-5">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">The P Series</p>
+                <h2 className="mt-2 font-serif text-3xl font-bold text-navy">11 practical visual guides</h2>
+              </div>
+              <span className="hidden text-sm text-charcoal/60 sm:block">Click any guide to view it full size</span>
+            </div>
 
-                    {/* Content */}
-                    <div className="flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-start justify-between mb-4">
-                          <FileText className="h-8 w-8 text-gold flex-shrink-0" />
-                          <span className="text-xs font-semibold text-gold uppercase tracking-widest text-right ml-2">
-                            {sheet.category}
-                          </span>
-                        </div>
-                        <h3 className="font-serif text-2xl font-bold text-navy mb-4">
-                          {sheet.title}
-                        </h3>
-                        <p className="text-charcoal/70 mb-6 text-sm leading-relaxed">
-                          {sheet.description}
-                        </p>
-                      </div>
-
-                      {/* Download Button */}
-                      <Button
-                        onClick={() => downloadPDF(sheet)}
-                        disabled={downloadingId === sheet.id}
-                        className="w-full bg-navy text-cream hover:bg-gold hover:text-navy transition-colors duration-100 disabled:opacity-50"
-                      >
-                        {downloadingId === sheet.id ? (
-                          <>
-                            <Loader className="mr-2 h-4 w-4 animate-spin" />
-                            Generating PDF...
-                          </>
-                        ) : (
-                          <>
-                            <Download className="mr-2 h-4 w-4" />
-                            Download PDF
-                          </>
-                        )}
-                      </Button>
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+              {cheatSheets.map((sheet, index) => (
+                <article key={sheet.title} className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-cream/40 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-gold/50 hover:shadow-lg">
+                  <a href={sheet.image} target="_blank" rel="noreferrer" className="block overflow-hidden bg-white" aria-label={`View ${sheet.title} guide full size`}>
+                    <img src={sheet.image} alt={`${sheet.title} P Series summary infographic`} className="aspect-[2/3] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]" loading={index < 3 ? 'eager' : 'lazy'} />
+                  </a>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold"><FileText data-icon="inline-start" /> {sheet.category}</span>
+                      <span className="text-xs font-medium text-charcoal/50">{String(index + 1).padStart(2, '0')}</span>
                     </div>
+                    <h3 className="font-serif text-2xl font-bold text-navy">{sheet.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-charcoal/70">{sheet.description}</p>
+                    <Button asChild variant="outline" className="mt-6 w-full border-navy/20 text-navy hover:border-gold hover:bg-gold/10">
+                      <a href={sheet.image} target="_blank" rel="noreferrer">View full-size guide <ExternalLink data-icon="inline-end" /></a>
+                    </Button>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-navy text-cream">
-          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
-              More Resources Coming Soon
-            </h2>
-            <p className="text-lg text-cream/80 mb-8">
-              Subscribe to our newsletter to get notified when new cheat sheets are available.
-            </p>
-            <Button
-              asChild
-              className="bg-gold text-navy hover:bg-cream transition-colors duration-100"
-            >
-              <Link href="/#newsletter">Join the Inner Circle</Link>
-            </Button>
+        <section className="bg-navy px-4 py-16 text-cream sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-serif text-3xl font-bold md:text-4xl">More Resources Coming Soon</h2>
+            <p className="mt-5 text-lg text-cream/80">Subscribe to get notified when new guides and worksheets are available.</p>
+            <Button asChild className="mt-8 bg-gold text-navy hover:bg-cream"><Link href="/#newsletter">Join the Inner Circle</Link></Button>
           </div>
         </section>
       </main>
