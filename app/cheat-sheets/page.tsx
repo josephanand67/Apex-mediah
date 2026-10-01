@@ -7,7 +7,7 @@ import Link from 'next/link'
 const sourceHost = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/'
 
 const cheatSheets = [
-  { title: 'Pause on Purpose', description: 'Build the space between stimulus and response with conscious pause practices.', category: 'Mindfulness', image: `${sourceHost}2.%20P%20Series%20Book%20-%20Presence%20%28Summary%20Infographic%29-9cK1tkeuNmuGJuJ2IHN8gjvArOuL9L.png` },
+  { title: 'Pause on Purpose', description: 'Build the space between stimulus and response with conscious pause practices.', category: 'Mindfulness', image: `${sourceHost}2.%20P%20Series%20Book%20-%20Presence%20%28Summary%20Infographic%29-g8ayMJhkJrN05X9orhHh9pYO9Up4jT.png` },
   { title: 'Positivity', description: 'Direct your emotional energy toward resilience, gratitude, and a more positive life.', category: 'Well-being', image: `${sourceHost}3.%20P%20Series%20Book%20-%20Positivity%20%28Summary%20Infograhic%29-2QOSu7ivdFIlout7Lh02yZD7ouOl94.png` },
   { title: 'Perception', description: 'See clearly, question assumptions, and choose the lens through which you view the world.', category: 'Self-awareness', image: `${sourceHost}4.%20P%20Series%20Book%20-%20Perception%20%28Summary%20Infographic%29-QOJnPfxMv7kuWZRwq6VV5IXkVIhqCA.png` },
   { title: 'Paradoxes', description: 'Hold different truths with wisdom and thrive in a polarized world.', category: 'Wisdom', image: `${sourceHost}5.%20P%20Series%20Book%20-%20%20Paradoxes%20%28Summary%20Infographic%29-IPD5Sr8wq1drxfep0XcKYzvKkO1x2C.png` },
@@ -27,7 +27,7 @@ export default function CheatSheetsPage() {
       <main>
         <section className="bg-gradient-to-b from-cream to-white px-4 pb-14 pt-32 text-center sm:px-6 lg:px-8">
           <span className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">Quick Reference Library</span>
-          <h1 className="mt-4 font-serif text-5xl font-bold text-navy md:text-6xl">Cheat Sheets &amp; Resources</h1>
+          <h1 className="mt-4 font-serif text-5xl font-bold text-navy md:text-6xl">Summary Infographics of P Series Books</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/70 md:text-xl">
             Explore the P Series collection of visual guides for emotional intelligence, personal growth, and meaningful leadership.
           </p>
