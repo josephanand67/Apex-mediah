@@ -28,7 +28,7 @@ export default function CheatSheetsPage() {
       <main>
         <section className="bg-gradient-to-b from-cream to-white px-4 pb-14 pt-32 text-center sm:px-6 lg:px-8">
           <span className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">Quick Reference Library</span>
-          <h1 className="mt-4 font-serif text-5xl font-bold text-navy md:text-6xl">Summary Infographics of P Series Books</h1>
+          <h1 className="mt-4 font-serif text-5xl font-bold text-navy md:text-6xl">Cheat Sheets &amp; Resources</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/70 md:text-xl">
             Explore the P Series collection of visual guides for emotional intelligence, personal growth, and meaningful leadership.
           </p>
@@ -39,7 +39,7 @@ export default function CheatSheetsPage() {
             <div className="mb-10 flex items-end justify-between gap-6 border-b border-navy/10 pb-5">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">The P Series</p>
-                <h2 className="mt-2 font-serif text-3xl font-bold text-navy">12 practical visual guides</h2>
+                <h2 className="mt-2 font-serif text-3xl font-bold text-navy">Summary Infographics of P Series Books</h2>
               </div>
               <span className="hidden text-sm text-charcoal/60 sm:block">Click any guide to view it full size</span>
             </div>
